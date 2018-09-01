@@ -1,0 +1,1 @@
+export const getTerms = state => state.terms;
