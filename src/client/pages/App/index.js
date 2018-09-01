@@ -18,7 +18,12 @@ const App = ({
     terms,
 }) => (
     <Container>
-        {map(term => <Terminal term={term}/>,terms)}
+        {map(term =>
+            <Terminal
+                key={term.id}
+                term={term}
+            />
+        ,terms)}
     </Container>
 );
 
