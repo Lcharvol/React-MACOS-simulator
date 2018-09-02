@@ -21,7 +21,7 @@ const InputLine = ({
     handleChangeValue,
     termId,
     addNewLine,
-    path
+    path,
 }) => (
     <Container>
         <Arrow/>

@@ -1,8 +1,9 @@
 import uuidv4 from 'uuid/v4';
 
 const initialTree = {
+    files:["HelloWorld.c"],
     Desktop:{
-        files:["HelloWorld.c"],
+        files:["HelloWorld2.c"],
     },
     Documents: {
         files:[],
@@ -22,4 +23,5 @@ export const initialTerm = {
     env: {},
     lines: [],
     path: ['~'],
+    tree: initialTree,
 };

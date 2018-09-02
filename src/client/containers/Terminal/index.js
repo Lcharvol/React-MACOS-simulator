@@ -1,5 +1,5 @@
 import React from 'react';
-import { map, length, equals } from 'ramda';
+import { map, equals, length } from 'ramda';
 import { array, func } from 'prop-types';
 
 import {
@@ -26,7 +26,7 @@ const Terminal = ({
 }) => (
     <Container>
         <Header/>
-        <LinesContainer>
+        <LinesContainer fullLine={length(lines) >= 10}>
             {map(line =>
                 <Line
                     key={line.id}

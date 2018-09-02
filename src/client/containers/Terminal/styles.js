@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     position: relative;
     display:flex;
+    justify-content:flex-start;
     flex-direction:column;
     width: 800px;
     height: 500px;
@@ -18,10 +19,11 @@ export const Container = styled.div`
 export const LinesContainer = styled.div`
     position:relative;
     display:flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: ${({ fullLine }) => fullLine ? 'flex-end' : 'flex-start'};
+    align-items: flex-start;
     flex-direction:column;
-    flex-wrap:wrap;
     width:100%;
     margin-top:10px;
+    max-height:100%;
+    overflow:hidden;
 `;

@@ -23,8 +23,7 @@ const Line = ({
         location
     },
 }) => (
-    <Container>
-        {console.log('values: ',values)}
+    <Container nbLines={length(values)}>
         <MainContent>
             <Arrow/>
             <Location>{location}</Location>

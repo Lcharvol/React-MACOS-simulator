@@ -3,6 +3,8 @@ import {
     findIndex,
     map,
     equals,
+    length,
+    dropLast,
     isNil
 } from 'ramda';
 import uuidv4 from 'uuid/v4';
@@ -15,14 +17,28 @@ import {
 import { initialTerm, initialLine } from '../constants/term';
 
 const initialState = [initialTerm];
-  
+
+const isDestAvailable = (path, tree) => {
+    return true;
+};
+
+const getNewPath = (oldPath, dest, tree) => {
+    if(!isDestAvailable(oldPath, tree))
+        return oldPath;
+    if(dest == '..')
+        return length(oldPath) > 1 ? dropLast(1, oldPath) : oldPath;
+    return [...oldPath, dest]
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_LOCATION: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
+            const path = getNewPath(state[termIndex].path, action.dest, state[termIndex].tree);
+
             state[termIndex] = {
                 ...state[termIndex],
-                path: [...state[termIndex].path, action.dest]
+                path,
             };
             return [...state];
         }
@@ -30,6 +46,7 @@ const reducer = (state = initialState, action) => {
             return [...state, action.newTerm];
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
+
             state[termIndex] = {
                 ...state[termIndex],
                 lines: [

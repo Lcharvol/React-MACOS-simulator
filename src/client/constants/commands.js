@@ -1,12 +1,15 @@
-import { changeLocation } from '../actions/terms';
-import { store } from '../index';
+import {
+    ls,
+    cd
+} from '../commands'
+
 export const supportedCommands = [
     {
         name: 'cd',
-        action: (termId, dest) => store.dispatch(changeLocation(dest, termId)),
+        action: (termId, dest = '~') => cd(termId, dest),
     },
     {
         name: 'ls',
-        action: (termId) => console.log("termId: ", termId),
+        action: (termId) => ls(termId),
     },
 ]

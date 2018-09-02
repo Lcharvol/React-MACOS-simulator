@@ -9,7 +9,7 @@ export const Container = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     width:calc(100% - 10px);
-    min-height:25px;
+    min-height:${({ nbLines }) => nbLines * 25}px;
     color:white;
     font-weight:0;
     padding-left:10px;
@@ -22,7 +22,7 @@ export const MainContent = styled.div`
     justify-content: flex-start;
     align-items: center;
     width:calc(100% - 10px);
-    height:25px;
+    min-height:25px;
     color:white;
     font-weight:0;
 `;
@@ -48,13 +48,15 @@ export const Values = styled.div`
     display:flex;
     width:100%;
     flex-direction:column;
+    min-height:25px;
 `;
 
 export const Value = styled.div`
     position:relative;
     display:flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     width:100%;
     flex-wrap: wrap;
+    min-height:25px;
 `;
