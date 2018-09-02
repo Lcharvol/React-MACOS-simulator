@@ -1,4 +1,5 @@
 import React from 'react';
+import Draggable from 'react-draggable';
 import { map, equals, length, dec } from 'ramda';
 import { array, func } from 'prop-types';
 
@@ -24,9 +25,27 @@ class Terminal extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { lineValue: '' };
+        this.state = {
+            lineValue: '',
+            activeDrags: 0,
+            deltaPosition: {
+              x: 0, y: 0
+            },
+            controlledPosition: {
+              x: -400, y: 200
+            }
+        };
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
+    }
+    handleDrag(e, ui) {
+        const {x, y} = this.state.deltaPosition;
+        this.setState({
+            deltaPosition: {
+            x: x + ui.deltaX,
+            y: y + ui.deltaY,
+            }
+        });
     }
     handleChangeValue(newValue) {
         this.setState({ lineValue: newValue });
@@ -44,39 +63,42 @@ class Terminal extends React.Component {
             },
             addNewLine,
         } = this.props;
-        const { lineValue } = this.state;
+        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+        const { lineValue, deltaPosition, controlledPosition } = this.state;
         return (
-            <Container onClick={this.focusTextInput}> 
-                <Header/>
-                <LinesContainer fullLine={length(lines) >= 10}>
-                    {map(line =>
-                        <Line
-                            key={line.id}
-                            line={line}
-                        />
-                    ,lines)}
-                </LinesContainer>
-                <InputLineContainer>
-                    <Arrow/>
-                    <Location>{path[dec(length(path))]}</Location>
-                    <StyledForm onSubmit={e => {
-                        e.preventDefault();
-                        this.handleChangeValue('');
-                        addNewLine(
-                            id,
-                            path[dec(length(path))],
-                            lineValue,
-                            getCommand(lineValue, id)
-                        );
-                    }}>
-                        <TextInput
-                            innerRef={this.textInput}
-                            value={lineValue}
-                            onChange={e => this.handleChangeValue(e.target.value)}
-                        />
-                    </StyledForm>
-                </InputLineContainer>
-            </Container>
+            <Draggable {...dragHandlers}>
+                <Container onClick={this.focusTextInput}> 
+                    <Header/>
+                    <LinesContainer fullLine={length(lines) >= 10}>
+                        {map(line =>
+                            <Line
+                                key={line.id}
+                                line={line}
+                            />
+                        ,lines)}
+                    </LinesContainer>
+                    <InputLineContainer>
+                        <Arrow/>
+                        <Location>{path[dec(length(path))]}</Location>
+                        <StyledForm onSubmit={e => {
+                            e.preventDefault();
+                            this.handleChangeValue('');
+                            addNewLine(
+                                id,
+                                path[dec(length(path))],
+                                lineValue,
+                                getCommand(lineValue, id)
+                            );
+                        }}>
+                            <TextInput
+                                innerRef={this.textInput}
+                                value={lineValue}
+                                onChange={e => this.handleChangeValue(e.target.value)}
+                            />
+                        </StyledForm>
+                    </InputLineContainer>
+                </Container>
+            </Draggable>
         );
     }
 };

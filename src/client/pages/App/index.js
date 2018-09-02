@@ -3,11 +3,11 @@ import { array, func } from 'prop-types';
 import { map } from 'ramda';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addNewLine } from '../../actions/terms';
 
 import {
     Container
 } from './styles';
+import { addNewLine } from '../../actions/terms';
 import Terminal from '../../containers/Terminal';
 import { getTerms } from '../../selectors/term';
 
