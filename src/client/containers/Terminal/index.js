@@ -1,6 +1,6 @@
 import React from 'react';
 import { map } from 'ramda';
-import { array } from 'prop-types';
+import { array, func } from 'prop-types';
 
 import {
     Container,
@@ -11,9 +11,16 @@ import Line from './Line';
 
 const propTypes = {
     lines: array.isRequired,
+    addNewLine: func.isRequired,
 }
 
-const Terminal = ({ term: { lines }}) => (
+const Terminal = ({
+    term: {
+        lines,
+        id
+    },
+    addNewLine
+}) => (
     <Container>
         <Header/>
         <LinesContainer>
@@ -21,6 +28,8 @@ const Terminal = ({ term: { lines }}) => (
                 <Line
                     key={line.id}
                     line={line}
+                    termId={id}
+                    addNewLine={addNewLine}
                 />
             ,lines)}
         </LinesContainer>

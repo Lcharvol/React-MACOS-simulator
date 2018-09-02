@@ -21,9 +21,17 @@ export const Location = styled.div`
     color: rgb(96,253,255);
 `;
 
-export const Text = styled.div`
+export const TextInput = styled.input`
+    position:relative;
+    background-color:transparent;
+    border:none;
     font-size:12px;
     margin-right:10px;
+    width:100%;
+    color:white;
+    &:focus {
+        outline:none;
+    }
 `;
 
 export const Arrow = styled(FaLongArrowAltRight)`
