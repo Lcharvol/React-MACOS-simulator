@@ -1,5 +1,17 @@
 import uuidv4 from 'uuid/v4';
 
+const initialTree = {
+    Desktop:{
+        files:["HelloWorld.c"],
+    },
+    Documents: {
+        files:[],
+    },
+    Downloads: {
+        files:[],
+    }
+}
+
 export const initialLine = {
     id: 0,
     values: [],
