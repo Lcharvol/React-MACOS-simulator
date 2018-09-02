@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Location = styled.div`
-    font-size:20px;
+    font-size:12px;
     margin-right:10px;
     color: rgb(96,253,255);
 `;

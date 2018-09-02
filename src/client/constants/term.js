@@ -8,6 +8,6 @@ export const initialLine = {
 export const initialTerm = {
     id: uuidv4(),
     env: {},
-    lines: [initialLine],
+    lines: [],
     path: ['~'],
 };

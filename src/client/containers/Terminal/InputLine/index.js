@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+    compose,
+    withStateHandlers,
+} from 'recompose';
 import { dec, length } from 'ramda';
 
 import {
@@ -10,10 +14,7 @@ import {
     Arrow,
     Location,
 } from '../Line/styles';
-import {
-    compose,
-    withStateHandlers,
-} from 'recompose';
+import { getCommand } from '../../../inputParcer';
 
 const InputLine = ({
     textValue,
@@ -27,6 +28,7 @@ const InputLine = ({
         <Location>{path[dec(length(path))]}</Location>
         <StyledForm onSubmit={e => {
             e.preventDefault();
+            getCommand(textValue, termId)
             handleChangeValue('');
             addNewLine(termId);
         }}>

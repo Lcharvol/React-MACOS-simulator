@@ -6,7 +6,7 @@ import configureStore from './store';
 import App from './pages/App';
 
 const initialState = {};
-const store = configureStore(initialState);
+export const store = configureStore(initialState);
 
 const Root = () => (
   <Provider store={store}>
