@@ -8,4 +8,5 @@ export const Container = styled.div`
     height:100vh;
     background-color:rgb(10,10,10);
     font-family: monospace;
+    overflow:hidden;
 `;

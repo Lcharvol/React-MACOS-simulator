@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     position: relative;
+    z-index:${({ position}) => position};
     display:flex;
     justify-content:flex-start;
     flex-direction:column;

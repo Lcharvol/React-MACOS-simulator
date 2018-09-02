@@ -1,0 +1,1 @@
+export const getTopTermPosition = state => state.app.topTermPosition;

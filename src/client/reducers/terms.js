@@ -17,7 +17,7 @@ import {
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
-const initialState = [initialTerm];
+const initialState = [initialTerm, initialTerm];
 
 const isDestAvailable = (path, tree) => {
     return true;

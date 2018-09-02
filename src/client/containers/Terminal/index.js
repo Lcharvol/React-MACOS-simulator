@@ -33,7 +33,8 @@ class Terminal extends React.Component {
             },
             controlledPosition: {
               x: -400, y: 200
-            }
+            },
+            position: 0,
         };
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
@@ -62,12 +63,28 @@ class Terminal extends React.Component {
                 path,
             },
             addNewLine,
+            topTermPosition,
+            changeTopTermPosition
         } = this.props;
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
-        const { lineValue, deltaPosition, controlledPosition } = this.state;
+        const {
+            lineValue,
+            deltaPosition,
+            controlledPosition,
+            position
+        } = this.state;
         return (
-            <Draggable {...dragHandlers}>
-                <Container onClick={this.focusTextInput}> 
+            <Draggable bounds="body" {...dragHandlers}>
+                <Container
+                    onClick={() => {
+                            this.focusTextInput;
+                            this.setState({ position: topTermPosition + 1 });
+                            changeTopTermPosition(topTermPosition + 1);
+                        }
+                    }
+                    position={position}
+                > 
+                {console.log('topTermPosition: ', topTermPosition)}
                     <Header/>
                     <LinesContainer fullLine={length(lines) >= 10}>
                         {map(line =>
