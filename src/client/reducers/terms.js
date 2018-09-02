@@ -2,7 +2,8 @@ import {
     propEq,
     findIndex,
     map,
-    equals
+    equals,
+    isNil
 } from 'ramda';
 import uuidv4 from 'uuid/v4';
 
@@ -33,7 +34,12 @@ const reducer = (state = initialState, action) => {
                 ...state[termIndex],
                 lines: [
                     ...state[termIndex].lines,
-                    {...initialLine, id: uuidv4()}
+                    {
+                        ...initialLine,
+                        id: uuidv4(),
+                        location: action.location,
+                        values: !isNil(action.ret) ? [action.line, action.ret] : [action.line],
+                    }
                 ]
             }
             return [...state];

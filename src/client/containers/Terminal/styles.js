@@ -18,10 +18,10 @@ export const Container = styled.div`
 export const LinesContainer = styled.div`
     position:relative;
     display:flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     flex-direction:column;
     flex-wrap:wrap;
     width:100%;
-    height:calc(100% - 10px);
+    margin-top:10px;
 `;

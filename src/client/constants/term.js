@@ -2,7 +2,7 @@ import uuidv4 from 'uuid/v4';
 
 export const initialLine = {
     id: 0,
-    value: '',
+    values: [],
     location: '~',
 }
 export const initialTerm = {

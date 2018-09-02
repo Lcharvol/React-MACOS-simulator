@@ -28,9 +28,8 @@ const InputLine = ({
         <Location>{path[dec(length(path))]}</Location>
         <StyledForm onSubmit={e => {
             e.preventDefault();
-            getCommand(textValue, termId)
             handleChangeValue('');
-            addNewLine(termId);
+            addNewLine(termId, path[dec(length(path))], textValue, getCommand(textValue, termId));
         }}>
             <TextInput
                 value={textValue}

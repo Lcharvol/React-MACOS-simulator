@@ -14,5 +14,7 @@ export const getCommand = (line, termId) => {
     const command = getCommandIfSupported(words[0])
     if(!isNil(command)) {
         command.action(termId, words[1])
-    };
+    }
+    else  
+        return "Command not found: " + words[0];
 };

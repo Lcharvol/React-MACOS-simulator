@@ -24,7 +24,8 @@ export const TextInput = styled.input`
     color:white;
     &:focus {
         outline:none;
-    }
+    };
+    font-family: monospace;
 `;
 
 export const StyledForm = styled.form`

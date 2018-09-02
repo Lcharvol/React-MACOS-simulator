@@ -1,23 +1,43 @@
 import React from 'react';
-import { length } from 'ramda';
+import { length, map, drop } from 'ramda';
+import { array, string } from 'prop-types';
 
 import {
     Container,
+    MainContent,
     Location,
-    Arrow
+    Arrow,
+    Command,
+    Values,
+    Value
 } from './styles';
+
+const propTypes = {
+    values: array,
+    location: string,
+}
 
 const Line = ({
     line: {
-        value,
+        values,
         location
     },
 }) => (
     <Container>
-        <Arrow/>
-        <Location>{location}</Location>
-        {value}
+        {console.log('values: ',values)}
+        <MainContent>
+            <Arrow/>
+            <Location>{location}</Location>
+            <Command>{values[0]}</Command>
+        </MainContent>
+        <Values>
+            {drop(1, values).map((value, id) =>
+                <Value key={id}>{value}</Value>
+            )}
+        </Values>
     </Container>
 );
+
+Line.propTypes = propTypes;
 
 export default Line;

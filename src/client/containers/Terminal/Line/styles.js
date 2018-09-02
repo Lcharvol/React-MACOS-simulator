@@ -5,14 +5,26 @@ import { GREEN_BUTTON } from '../../../constants/colors';
 export const Container = styled.div`
     position:relative;
     display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width:calc(100% - 10px);
+    min-height:25px;
+    color:white;
+    font-weight:0;
+    padding-left:10px;
+    font-size:12px;
+`;
+
+export const MainContent = styled.div`
+    position:relative;
+    display:flex;
     justify-content: flex-start;
     align-items: center;
     width:calc(100% - 10px);
     height:25px;
     color:white;
     font-weight:0;
-    padding-left:10px;
-    font-size:12px;
 `;
 
 export const Location = styled.div`
@@ -25,4 +37,24 @@ export const Arrow = styled(FaLongArrowAltRight)`
     font-size:12px;
     margin-right:7px;
     color:${GREEN_BUTTON}
+`;
+
+export const Command = styled.div`
+    display:flex;
+`;
+
+export const Values = styled.div`
+    position:relative;
+    display:flex;
+    width:100%;
+    flex-direction:column;
+`;
+
+export const Value = styled.div`
+    position:relative;
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width:100%;
+    flex-wrap: wrap;
 `;
