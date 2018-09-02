@@ -16,12 +16,15 @@ import {
 } from '../Line/styles';
 import { getCommand } from '../../../inputParcer';
 
+  
+
 const InputLine = ({
     textValue,
     handleChangeValue,
     termId,
     addNewLine,
     path,
+    inputRef,
 }) => (
     <Container>
         <Arrow/>
@@ -29,9 +32,15 @@ const InputLine = ({
         <StyledForm onSubmit={e => {
             e.preventDefault();
             handleChangeValue('');
-            addNewLine(termId, path[dec(length(path))], textValue, getCommand(textValue, termId));
+            addNewLine(
+                termId,
+                path[dec(length(path))],
+                textValue,
+                getCommand(textValue, termId)
+            );
         }}>
             <TextInput
+                ref={inputRef}
                 value={textValue}
                 onChange={e => handleChangeValue(e.target.value)}
             />
