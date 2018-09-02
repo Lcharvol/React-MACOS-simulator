@@ -9,5 +9,5 @@ export const initialTerm = {
     id: uuidv4(),
     env: {},
     lines: [initialLine],
-    path: '~',
+    path: ['~'],
 };

@@ -24,5 +24,4 @@ export const LinesContainer = styled.div`
     flex-wrap:wrap;
     width:100%;
     height:calc(100% - 10px);
-    padding-bottom:10px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { map } from 'ramda';
+import { map, length, equals } from 'ramda';
 import { array, func } from 'prop-types';
 
 import {
@@ -8,16 +8,19 @@ import {
 } from './styles'
 import Header from './Header';
 import Line from './Line';
+import InputLine from './InputLine';
 
 const propTypes = {
     lines: array.isRequired,
     addNewLine: func.isRequired,
-}
+    path: array.isRequired,
+};
 
 const Terminal = ({
     term: {
         lines,
-        id
+        id,
+        path
     },
     addNewLine
 }) => (
@@ -28,11 +31,14 @@ const Terminal = ({
                 <Line
                     key={line.id}
                     line={line}
-                    termId={id}
-                    addNewLine={addNewLine}
                 />
             ,lines)}
         </LinesContainer>
+        <InputLine
+            termId={id}
+            addNewLine={addNewLine}
+            path={path}
+        />
     </Container>
 );
 

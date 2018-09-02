@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { FaLongArrowAltRight } from 'react-icons/fa';
-import { GREEN_BUTTON } from '../../../constants/colors';
 
 export const Container = styled.div`
     position:relative;
@@ -13,16 +11,23 @@ export const Container = styled.div`
     font-weight:0;
     padding-left:10px;
     font-size:12px;
+    margin-bottom:10px;
 `;
 
-export const Location = styled.div`
-    font-size:20px;
-    margin-right:10px;
-    color: rgb(96,253,255);
-`;
-
-export const Arrow = styled(FaLongArrowAltRight)`
+export const TextInput = styled.input`
+    position:relative;
+    background-color:transparent;
+    border:none;
     font-size:12px;
-    margin-right:7px;
-    color:${GREEN_BUTTON}
+    margin-right:10px;
+    width:100%;
+    color:white;
+    &:focus {
+        outline:none;
+    }
+`;
+
+export const StyledForm = styled.form`
+    position:relative;
+    width:100%;
 `;
