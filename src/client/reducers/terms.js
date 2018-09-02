@@ -13,6 +13,7 @@ import {
     ADD_NEW_TERM,
     ADD_NEW_LINE,
     CHANGE_LOCATION,
+    CLEAR_TERM,
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
@@ -42,11 +43,21 @@ const reducer = (state = initialState, action) => {
             };
             return [...state];
         }
+        case CLEAR_TERM: {
+            const termIndex = findIndex(propEq('id', action.termId))(state);
+            state[termIndex] = {
+                ...state[termIndex],
+                lines: [],
+            }
+            return [...state];
+        }
         case ADD_NEW_TERM:
             return [...state, action.newTerm];
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
 
+            if(action.ret === null)
+                return [...state];
             state[termIndex] = {
                 ...state[termIndex],
                 lines: [

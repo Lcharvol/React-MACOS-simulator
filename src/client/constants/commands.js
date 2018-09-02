@@ -1,6 +1,7 @@
 import {
     ls,
-    cd
+    cd,
+    clear
 } from '../commands'
 
 export const supportedCommands = [
@@ -12,4 +13,8 @@ export const supportedCommands = [
         name: 'ls',
         action: (termId) => ls(termId),
     },
+    {
+        name: 'clear',
+        action: (termId) => clear(termId),
+    }
 ]

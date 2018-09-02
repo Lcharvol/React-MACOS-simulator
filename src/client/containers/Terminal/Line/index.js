@@ -29,11 +29,11 @@ const Line = ({
             <Location>{location}</Location>
             <Command>{values[0]}</Command>
         </MainContent>
-        <Values>
+        {length(values) > 1 && <Values>
             {drop(1, values).map((value, id) =>
                 <Value key={id}>{value}</Value>
             )}
-        </Values>
+        </Values>}
     </Container>
 );
 

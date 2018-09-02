@@ -6,8 +6,12 @@ export const ADD_NEW_LINE = "term:add:line";
 
 export const CHANGE_LOCATION = "term:location:change";
 
+export const CLEAR_TERM = "term:command:clear"
+
 export const addNewTerm = () => ({ type: ADD_NEW_TERM, term: initialTerm });
 
 export const addNewLine = (termId, location, line, ret) => ({ type: ADD_NEW_LINE, termId, location, line, ret });
 
 export const changeLocation = (dest, termId) => ({ type: CHANGE_LOCATION, dest, termId });
+
+export const clearTerm = (termId) => ({ type: CLEAR_TERM, termId });
