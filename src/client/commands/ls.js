@@ -1,3 +1,5 @@
+import { drop } from 'ramda';
+
 import { store } from '../index';
 import {
     find,
@@ -8,33 +10,33 @@ import {
     without
 } from 'ramda';
 
-const getFolders = (location, tree) => {
+const getFolders = (path, tree) => {
     let folders = [];
     let files = [];
     let ret = [];
-    if(location === '~')
-    {
-        folders =  without('files',keys(tree));
-        files = tree.files
-        ret = map(folder => ({
-            value: folder,
-            color: 'rgb(96,253,255)'
-        }), folders);
-        ret = [...ret, ...map(file => ({
-            value: file,
-            color: 'white'
-        }),files)];
-        return ret;
-    } else {
-    };
-    return folders;
+    let tmp = tree;
+
+    map(loc => {
+        tmp = tmp[loc];
+    },drop(1, path));
+    folders =  without('files',keys(tmp));
+    files = tmp.files
+    ret = map(folder => ({
+        value: folder,
+        color: 'rgb(96,253,255)'
+    }), folders);
+    ret = [...ret, ...map(file => ({
+        value: file,
+        color: 'white'
+    }),files)];
+    return ret;
 };
 
 const ls = termId => {
     const { terms } = store.getState();
     const term = find(propEq('id', termId))(terms);
-    const location = term.path[length(term.path) - 1];
-    const folders = getFolders(location, term.tree);
+    const { path, tree } = term;
+    const folders = getFolders(path, tree);
     return folders;
 };
 
