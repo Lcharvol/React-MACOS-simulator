@@ -38,8 +38,10 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_LOCATION: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
-            const path = getNewPath(state[termIndex].path, action.dest, state[termIndex].tree);
+            let path = getNewPath(state[termIndex].path, action.dest, state[termIndex].tree);
 
+            if(action.dest === '~')
+                path = ['~'];
             state[termIndex] = {
                 ...state[termIndex],
                 path,
@@ -58,8 +60,9 @@ const reducer = (state = initialState, action) => {
             const termIndex = findIndex(propEq('id', action.termId))(state);
             return remove(termIndex, 1, state)
         };
-        case ADD_NEW_TERM:
+        case ADD_NEW_TERM:{
             return [...state, action.newTerm];
+        }
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
 

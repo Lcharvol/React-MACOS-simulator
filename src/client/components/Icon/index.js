@@ -12,7 +12,7 @@ const Icon = ({
 }) => (
     <Container
         icon={icon}
-        onClick={addNewTermgit}
+        onClick={() => addNewTerm()}
     />
 );
 

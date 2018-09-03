@@ -10,12 +10,22 @@ import {
 
 const getFolders = (location, tree) => {
     let folders = [];
+    let files = [];
+    let ret = [];
     if(location === '~')
     {
         folders =  without('files',keys(tree));
-        return map(folder => ({ value: folder, color: 'rgb(96,253,255)'}), folders);
+        files = tree.files
+        ret = map(folder => ({
+            value: folder,
+            color: 'rgb(96,253,255)'
+        }), folders);
+        ret = [...ret, ...map(file => ({
+            value: file,
+            color: 'white'
+        }),files)];
+        return ret;
     } else {
-
     };
     return folders;
 };

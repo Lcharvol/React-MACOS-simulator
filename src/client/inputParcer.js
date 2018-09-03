@@ -19,7 +19,7 @@ export const getCommand = (line, termId) => {
     if(!isNil(command)) {
         const { name, action } = command;
         if(name === 'cd')
-            action(termId, words[1]);
+            ret = action(termId, words[1]);
         else if(name === 'ls')
             ret = action(termId);
         else if(name === 'clear') {

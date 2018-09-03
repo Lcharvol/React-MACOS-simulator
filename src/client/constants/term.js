@@ -1,15 +1,15 @@
 import uuidv4 from 'uuid/v4';
 
 const initialTree = {
-    files:["HelloWorld.c"],
+    files:["HelloWorld.c", "test", "test2", "test3", "test4", "test5"],
     Desktop:{
         files:["HelloWorld2.c"],
     },
     Documents: {
-        files:[],
+        files:["HelloWorld3.c"],
     },
     Downloads: {
-        files:[],
+        files:["HelloWorld4.c"],
     }
 }
 

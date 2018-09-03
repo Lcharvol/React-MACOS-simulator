@@ -12,6 +12,7 @@ import { addNewLine, deleteTerm } from '../../actions/terms';
 import { changeTopTermPosition } from '../../actions/app';
 import Terminal from '../../containers/Terminal';
 import Menu from '../../containers/Menu';
+import Header from '../../containers/Header';
 import { getTerms } from '../../selectors/term';
 import { getTopTermPosition } from '../../selectors/app';
 
@@ -31,6 +32,7 @@ const App = ({
     deleteTerm,
 }) => (
     <Container>
+        <Header />
         <Content>
             {map(term =>
                 <Terminal
