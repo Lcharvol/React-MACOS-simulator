@@ -2,7 +2,8 @@ import {
     find,
     propEq,
     isNil,
-    split
+    split,
+    length
 } from 'ramda';
 
 import { supportedCommands } from './constants/commands';
@@ -12,7 +13,9 @@ const getCommandIfSupported = command => find(propEq('name', command))(supported
 export const getCommand = (line, termId) => {
     let ret = null;
     const words = split(' ', line);
-    const command = getCommandIfSupported(words[0])
+    const command = getCommandIfSupported(words[0]);
+    if(length((words[0])) === 0)
+        return[];
     if(!isNil(command)) {
         const { name, action } = command;
         if(name === 'cd')
@@ -27,5 +30,5 @@ export const getCommand = (line, termId) => {
             return ret
     }
     else  
-        return "Command not found: " + words[0];
+        return ["Command not found: " + words[0]];
 };

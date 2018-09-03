@@ -5,7 +5,8 @@ import {
     equals,
     length,
     dropLast,
-    isNil
+    isNil,
+    isEmpty
 } from 'ramda';
 import uuidv4 from 'uuid/v4';
 
@@ -17,7 +18,7 @@ import {
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
-const initialState = [initialTerm, initialTerm];
+const initialState = [initialTerm];
 
 const isDestAvailable = (path, tree) => {
     return true;
@@ -66,7 +67,7 @@ const reducer = (state = initialState, action) => {
                         ...initialLine,
                         id: uuidv4(),
                         location: action.location,
-                        values: !isNil(action.ret) ? [action.line, action.ret] : [action.line],
+                        values: !isNil(action.ret) ? [action.line, ...action.ret] : [action.line],
                     }
                 ]
             }

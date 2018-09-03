@@ -20,7 +20,7 @@ export const Container = styled.div`
 export const LinesContainer = styled.div`
     position:relative;
     display:flex;
-    justify-content: ${({ fullLine }) => fullLine ? 'flex-end' : 'flex-start'};
+    justify-content: flex-end;
     align-items: flex-start;
     flex-direction:column;
     width:100%;

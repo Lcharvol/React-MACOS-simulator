@@ -76,17 +76,16 @@ class Terminal extends React.Component {
         return (
             <Draggable bounds="body" {...dragHandlers}>
                 <Container
-                    onClick={() => {
-                            this.focusTextInput;
+                    onClick={(e) => {
+                            this.focusTextInput(e);
                             this.setState({ position: topTermPosition + 1 });
                             changeTopTermPosition(topTermPosition + 1);
                         }
                     }
                     position={position}
                 > 
-                {console.log('topTermPosition: ', topTermPosition)}
                     <Header/>
-                    <LinesContainer fullLine={length(lines) >= 10}>
+                    <LinesContainer>
                         {map(line =>
                             <Line
                                 key={line.id}
