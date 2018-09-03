@@ -3,6 +3,7 @@ WIP!
 ## Table des matières
 
 - [Usage](#usage)
+- [Commands](#Commands)
 - [Preview](#preview)
 
 # Usage
@@ -10,6 +11,18 @@ WIP!
 ```console
 yarn
 yarn cli
+```
+
+# Commands
+
+Supported UNIX command:
+
+```console
+ls (WIP)
+cd (WIP)
+clear (WIP)
+mkdir (INC)
+touch (INC)
 ```
 
  Then go to: http://localhost:8080/
