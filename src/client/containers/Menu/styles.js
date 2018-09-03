@@ -13,9 +13,11 @@ export const Container = styled.div`
 export const Bar = styled.div`
     position:relative;
     display:flex;
+    justify-content: flex-start;
+    align-items: center;
     min-width:50%;
     height:70px;
-    background-color:rgb(125,125,125,0.6);
+    background-color:rgb(175,175,175,0.6);
     margin-bottom:${({ displayMenu }) => displayMenu ? 0 : '-80px'};
     border-radius:3px;
     transition: margin-bottom 0.1s ease-in-out;

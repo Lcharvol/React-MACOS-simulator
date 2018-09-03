@@ -4,14 +4,16 @@ import {
     propEq,
     length,
     keys,
+    map,
     without
 } from 'ramda';
 
 const getFolders = (location, tree) => {
-    const folders = [];
+    let folders = [];
     if(location === '~')
     {
-        return without('files',keys(tree));
+        folders =  without('files',keys(tree));
+        return map(folder => ({ value: folder, color: 'rgb(96,253,255)'}), folders);
     } else {
 
     };

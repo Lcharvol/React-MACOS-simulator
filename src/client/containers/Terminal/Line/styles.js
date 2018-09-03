@@ -47,7 +47,6 @@ export const Values = styled.div`
     position:relative;
     display:flex;
     width:100%;
-    flex-direction:column;
     min-height:25px;
 `;
 
@@ -59,4 +58,5 @@ export const Value = styled.div`
     width:100%;
     flex-wrap: wrap;
     min-height:25px;
+    color: ${({ color }) => color};
 `;

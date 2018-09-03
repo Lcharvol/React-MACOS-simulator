@@ -31,7 +31,7 @@ const Line = ({
         </MainContent>
         {length(values) > 1 && <Values>
             {drop(1, values).map((value, id) =>
-                <Value key={id}>{value}</Value>
+                <Value key={id} color={value.color}>{value.value}</Value>
             )}
         </Values>}
     </Container>

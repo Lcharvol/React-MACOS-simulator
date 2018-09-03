@@ -30,5 +30,8 @@ export const getCommand = (line, termId) => {
             return ret
     }
     else  
-        return ["Command not found: " + words[0]];
+        return [{
+            value: "Command not found: " + words[0],
+            color: 'white',
+        }];
 };

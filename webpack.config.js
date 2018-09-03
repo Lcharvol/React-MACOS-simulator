@@ -49,6 +49,16 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file?name=public/[name].[ext]',
       },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+            }
+          }
+        ]
+      },
     ],
   },
 };
