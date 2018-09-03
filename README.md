@@ -16,4 +16,4 @@ yarn cli
   
 # Preview
 
-<img width="100%" src="https://user-images.githubusercontent.com/23408500/44958610-ef928900-aee2-11e8-99ef-94d4a12341c8.png"/>
+<img width="100%" src="https://user-images.githubusercontent.com/23408500/45001437-5e4c1100-afcd-11e8-8ef2-4713d158fa45.png"/>
