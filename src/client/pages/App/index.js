@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import {
-    Container
+    Container,
+    Content
 } from './styles';
 import { addNewLine } from '../../actions/terms';
 import { changeTopTermPosition } from '../../actions/app';
 import Terminal from '../../containers/Terminal';
+import Menu from '../../containers/Menu';
 import { getTerms } from '../../selectors/term';
 import { getTopTermPosition } from '../../selectors/app';
 
@@ -27,15 +29,18 @@ const App = ({
     topTermPosition,
 }) => (
     <Container>
-        {map(term =>
-            <Terminal
-                key={term.id}
-                topTermPosition={topTermPosition}
-                term={term}
-                addNewLine={addNewLine}
-                changeTopTermPosition={changeTopTermPosition}
-            />
-        ,terms)}
+        <Content>
+            {map(term =>
+                <Terminal
+                    key={term.id}
+                    topTermPosition={topTermPosition}
+                    term={term}
+                    addNewLine={addNewLine}
+                    changeTopTermPosition={changeTopTermPosition}
+                />
+            ,terms)}
+        </Content>
+        <Menu />
     </Container>
 );
 
