@@ -5,11 +5,15 @@ import { Container } from './styles';
 const Icon = ({
     shortcut: {
         name,
-        icon
+        icon,
+        action
     },
+    addNewTerm,
 }) => (
-    <Container icon={icon}>
-    </Container>
+    <Container
+        icon={icon}
+        onClick={addNewTermgit}
+    />
 );
 
 export default Icon;

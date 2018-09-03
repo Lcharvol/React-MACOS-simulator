@@ -15,8 +15,9 @@ export const Bar = styled.div`
     display:flex;
     justify-content: flex-start;
     align-items: center;
-    min-width:50%;
     height:70px;
+    padding-left:5px;
+    padding-right:5px;
     background-color:rgb(175,175,175,0.6);
     margin-bottom:${({ displayMenu }) => displayMenu ? 0 : '-80px'};
     border-radius:3px;

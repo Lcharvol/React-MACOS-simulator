@@ -19,6 +19,7 @@ const propTypes = {
     lines: array.isRequired,
     addNewLine: func.isRequired,
     path: array.isRequired,
+    deleteTerm: func.isRequired,
 };
 
 class Terminal extends React.Component {
@@ -64,7 +65,8 @@ class Terminal extends React.Component {
             },
             addNewLine,
             topTermPosition,
-            changeTopTermPosition
+            changeTopTermPosition,
+            deleteTerm
         } = this.props;
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
         const {
@@ -84,7 +86,10 @@ class Terminal extends React.Component {
                     }
                     position={position}
                 > 
-                    <Header/>
+                    <Header
+                        termId={id}
+                        deleteTerm={deleteTerm}
+                    />
                     <LinesContainer>
                         {map(line =>
                             <Line

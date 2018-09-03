@@ -7,8 +7,15 @@ const propTypes = {
     color: string.isRequired,
 }
 
-const Button = ({ color }) => (
-    <ButtonContainer color={color}>
+const Button = ({
+    color,
+    action,
+    termId,
+}) => (
+    <ButtonContainer
+        color={color}
+        onClick={() => action(termId)}
+    >
     </ButtonContainer>
 );
 

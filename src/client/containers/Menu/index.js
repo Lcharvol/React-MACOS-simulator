@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { getShortcuts } from '../../selectors/app';
 import { supportedShortcuts } from '../../constants/shortcuts';
 import Icon from '../../components/Icon';
+import { addNewTerm } from '../../actions/terms';
 import {
     Container,
     Bar
@@ -24,16 +25,20 @@ const getIcon = shortcut => {
 const Menu = ({
     displayMenu,
     handleDisplayMenu,
-    shortcuts
+    shortcuts,
+    addNewTerm
 }) => (
     <Container
         onMouseEnter={handleDisplayMenu}
         onMouseLeave={handleDisplayMenu}
     >
-        {console.log('shortcuts: ', shortcuts)}
         <Bar displayMenu={displayMenu}>
             {map(shortcut => 
-                <Icon key={shortcut} shortcut={getIcon(shortcut)}/>
+                <Icon
+                    key={shortcut}
+                    shortcut={getIcon(shortcut)}
+                    addNewTerm={addNewTerm}
+                />
             ,shortcuts)}
         </Bar>
     </Container>
@@ -43,7 +48,7 @@ const mapStateToProps = state => ({
     shortcuts: getShortcuts(state),
   });
   
-const actions = { };
+const actions = { addNewTerm };
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default compose(

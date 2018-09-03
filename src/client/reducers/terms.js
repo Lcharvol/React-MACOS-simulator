@@ -6,7 +6,8 @@ import {
     length,
     dropLast,
     isNil,
-    isEmpty
+    isEmpty,
+    remove
 } from 'ramda';
 import uuidv4 from 'uuid/v4';
 
@@ -15,6 +16,7 @@ import {
     ADD_NEW_LINE,
     CHANGE_LOCATION,
     CLEAR_TERM,
+    DELETE_TERM
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
@@ -51,7 +53,11 @@ const reducer = (state = initialState, action) => {
                 lines: [],
             }
             return [...state];
-        }
+        };
+        case DELETE_TERM: {
+            const termIndex = findIndex(propEq('id', action.termId))(state);
+            return remove(termIndex, 1, state)
+        };
         case ADD_NEW_TERM:
             return [...state, action.newTerm];
         case ADD_NEW_LINE: {

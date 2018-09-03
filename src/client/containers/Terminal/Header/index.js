@@ -8,9 +8,16 @@ import {
 import { Container } from './styles';
 import Button from './Button';
 
-const Header = () => (
+const Header = ({
+    termId,
+    deleteTerm,
+}) => (
     <Container>
-        <Button color={RED_BUTTON}/>
+        <Button
+            color={RED_BUTTON}
+            action={deleteTerm}
+            termId={termId}
+        />
         <Button color={YELLOW_BUTTON}/>
         <Button color={GREEN_BUTTON}/>
     </Container>

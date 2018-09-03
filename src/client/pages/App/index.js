@@ -8,7 +8,7 @@ import {
     Container,
     Content
 } from './styles';
-import { addNewLine } from '../../actions/terms';
+import { addNewLine, deleteTerm } from '../../actions/terms';
 import { changeTopTermPosition } from '../../actions/app';
 import Terminal from '../../containers/Terminal';
 import Menu from '../../containers/Menu';
@@ -20,6 +20,7 @@ const propTypes = {
     addNewLine: func.isRequired,
     topTermPosition: number,
     changeTopTermPosition: func.isRequired,
+    deleteTerm: func.isRequired,
 }
 
 const App = ({
@@ -27,6 +28,7 @@ const App = ({
     addNewLine,
     changeTopTermPosition,
     topTermPosition,
+    deleteTerm,
 }) => (
     <Container>
         <Content>
@@ -37,6 +39,7 @@ const App = ({
                     term={term}
                     addNewLine={addNewLine}
                     changeTopTermPosition={changeTopTermPosition}
+                    deleteTerm={deleteTerm}
                 />
             ,terms)}
         </Content>
@@ -51,7 +54,7 @@ const mapStateToProps = state => ({
     topTermPosition: getTopTermPosition(state),
   });
   
-const actions = { addNewLine, changeTopTermPosition };
+const actions = { addNewLine, changeTopTermPosition, deleteTerm };
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
