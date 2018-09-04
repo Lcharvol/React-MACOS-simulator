@@ -3,7 +3,8 @@ import {
     cd,
     clear,
     mkdir,
-    touch
+    touch,
+    rm
 } from '../commands'
 
 export const supportedCommands = [
@@ -26,5 +27,9 @@ export const supportedCommands = [
     {
         name: 'touch',
         action: (termId, name) => touch(termId, name),
+    },
+    {
+        name: 'rm',
+        action: (termId, name) => rm(termId, name),
     }
 ]

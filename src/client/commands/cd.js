@@ -20,6 +20,7 @@ const isDestAvailaible = (termId, dest, state) => {
     const term = terms[termIndex];
     const { tree, path } = term;
     let tmp = tree;
+    
     map(loc => {
         tmp = tmp[loc];
     },drop(1,path));
@@ -41,6 +42,7 @@ const goBack = (dest, state, termId) => {
 
 const cd = (termId, dest) => {
     const state = store.getState();
+
     if(dest === '.')
         return;
     else if(dest === '..') {

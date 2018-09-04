@@ -15,6 +15,7 @@ const mkdir = (termId, name) => {
     const { path, tree } = term;
     const folders = getFolders(path, tree);
     const isFolderExisting = !isNil(find(propEq('value', name))(folders));
+    
     if(isNil(name))
         return [{
             value: 'usage: mkdir directory ...',

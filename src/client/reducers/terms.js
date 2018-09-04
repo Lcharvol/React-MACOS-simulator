@@ -9,6 +9,7 @@ import {
     isNil,
     isEmpty,
     assocPath,
+    without,
     path as ramdaPath,
     remove
 } from 'ramda';
@@ -22,7 +23,8 @@ import {
     DELETE_TERM,
     ADD_REPOSITORY,
     ADD_FILE,
-    ADD_TO_COMMAND_HISTORY
+    ADD_TO_COMMAND_HISTORY,
+    REMOVE_FILE
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
@@ -81,7 +83,11 @@ const reducer = (state = initialState, action) => {
             const term = state[findIndex(propEq('id', action.termId))(state)];
             const { path, tree } = term;
 
-            term.tree = assocPath([...drop(1, path), name], {files: []}, term.tree);
+            term.tree = assocPath(
+                [...drop(1, path), name],
+                { files: [] },
+                term.tree
+            );
             return [...state];
         };
         case ADD_FILE: {
@@ -89,12 +95,28 @@ const reducer = (state = initialState, action) => {
             const term = state[findIndex(propEq('id', action.termId))(state)];
             const { path, tree } = term;
 
-            term.tree = assocPath([...drop(1, path), 'files'], [
-                ...ramdaPath(drop(1, path), term.tree).files,
-                name
-            ], term.tree);
+            term.tree = assocPath(
+                [...drop(1, path), 'files'],
+                [
+                    ...ramdaPath(drop(1, path), term.tree).files,
+                    name
+                ],
+                term.tree
+            );
             return [...state];
-        }
+        };
+        case REMOVE_FILE: {
+            const { termId, name } = action;
+            const term = state[findIndex(propEq('id', action.termId))(state)];
+            const { path, tree } = term;
+
+            term.tree = assocPath(
+                [...drop(1, path), 'files'],
+                without(name, ramdaPath(drop(1, path), term.tree).files),
+                term.tree
+            );
+            return [...state];
+        };
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
 

@@ -6,9 +6,9 @@ import {
 
 import { store } from '../index';
 import { getFiles } from './ls';
-import { addFile } from '../actions/terms';
+import { removeFile } from '../actions/terms';
 
-const touch = (termId, name) => {
+const rm = (termId, name) => {
     const state = store.getState();
     const { terms } = store.getState();
     const term = find(propEq('id', termId))(terms);
@@ -18,16 +18,16 @@ const touch = (termId, name) => {
     
     if(isNil(name))
         return [{
-            value: 'usage: touch file ...',
+            value: 'usage: rm [-f] [-R] file ...',
             color: 'white',
         }];
-    if(isFileExisting)
+    if(!isFileExisting)
         return [{
-            value: `touch: ${name}: File exists`,
+            value: `rm: ${name}: File doesn't exists`,
             color: 'white',
         }];
-    store.dispatch(addFile(termId, name));
+    store.dispatch(removeFile(termId, name));
     return;
 };
 
-export default touch;
+export default rm;
