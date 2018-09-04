@@ -6,6 +6,8 @@ import {
     length
 } from 'ramda';
 
+import { store } from './index';
+import { addToCommandsHistory } from './actions/terms';
 import { supportedCommands } from './constants/commands';
 
 const getCommandIfSupported = command => find(propEq('name', command))(supportedCommands)
@@ -18,6 +20,8 @@ export const getCommand = (line, termId) => {
         return[];
     if(!isNil(command)) {
         const { name, action } = command;
+
+        store.dispatch(addToCommandsHistory(termId, line))
         if(name === 'cd')
             ret = action(termId, words[1]);
         else if(name === 'ls')

@@ -21,7 +21,8 @@ import {
     CLEAR_TERM,
     DELETE_TERM,
     ADD_REPOSITORY,
-    ADD_FILE
+    ADD_FILE,
+    ADD_TO_COMMAND_HISTORY
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
@@ -61,6 +62,13 @@ const reducer = (state = initialState, action) => {
             }
             return [...state];
         };
+        case ADD_TO_COMMAND_HISTORY: {
+            const termIndex = findIndex(propEq('id', action.termId))(state);
+            state[termIndex].history.commands = [...state[termIndex].history.commands, action.command];
+            if(length(state[termIndex].history.commands) > 5)
+                state[termIndex].history.commands = drop(1, state[termIndex].history.commands);
+            return [...state];
+        }
         case DELETE_TERM: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
             return remove(termIndex, 1, state)

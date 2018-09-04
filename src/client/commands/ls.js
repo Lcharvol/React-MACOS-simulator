@@ -7,46 +7,28 @@ import {
     length,
     keys,
     map,
-    without
+    path as ramdaPath,
+    without,
+    omit
 } from 'ramda';
 
-export const getFolders = (path, tree) => {
-    let folders = [];
-    let ret = [];
-    let tmp = tree;
+export const getFolders = (path, tree) => map(folder => ({
+    value: folder,
+    color: 'rgb(96,253,255)'
+}),omit(['files'],ramdaPath(drop(1, path), tree)));
 
-    map(loc => {
-        tmp = tmp[loc];
-    },drop(1, path));
-    folders =  without('files',keys(tmp));
-    ret = map(folder => ({
-        value: folder,
-        color: 'rgb(96,253,255)'
-    }), folders);
-    return ret;
-};
-
-export const getFiles = (path, tree) => {
-    let files = [];
-    let ret = [];
-    let tmp = tree;
-
-    map(loc => {
-        tmp = tmp[loc];
-    },drop(1, path));
-    files = tmp.files;
-    ret = [...ret, ...map(file => ({
+export const getFiles = (path, tree) => map(file => ({
         value: file,
         color: 'white'
-    }),files)];
-    return ret;
-};
+    }),ramdaPath([...drop(1, path), 'files'], tree));
 
 const ls = termId => {
     const { terms } = store.getState();
     const term = find(propEq('id', termId))(terms);
     const { path, tree } = term;
+    console.log('path: ', path);
     const folders = getFolders(path, tree);
+    console.log('folders: ', folders)
     const files = getFiles(path, tree);
     return [...folders, ...files];
 };

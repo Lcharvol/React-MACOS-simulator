@@ -28,6 +28,7 @@ class Terminal extends React.Component {
 
         this.state = {
             lineValue: '',
+            historyCommandPos: 0,
             activeDrags: 0,
             deltaPosition: {
               x: 0, y: 0
@@ -55,11 +56,20 @@ class Terminal extends React.Component {
     focusTextInput() {
         this.textInput.current.focus();
     };
-    handleSpecificEvents(e) {
-        if (e.keyCode == 9) {
+    handleSpecificEvents(e, commands) {
+        if (e.keyCode == 38) {
+            const newHistoryCommandPos = (this.state.historyCommandPos + 1) <= length(commands) ? this.state.historyCommandPos + 1 : this.state.historyCommandPos;
+            const newValue = commands[length(commands) - newHistoryCommandPos] || '';
+
+            e.preventDefault();
+            this.setState({ lineValue: newValue, historyCommandPos: newHistoryCommandPos });
+        } else if (e.keyCode == 9) {
             e.preventDefault();
             alert("Execute ajax call after tab pressed");
-          }
+        }
+        else if (this.state.historyCommandPos !== 0) {
+            this.setState({ historyCommandPos: 0 });
+        }
     }
     render() {
         const {
@@ -67,6 +77,9 @@ class Terminal extends React.Component {
                 lines,
                 id,
                 path,
+                history: {
+                    commands,
+                }
             },
             addNewLine,
             topTermPosition,
@@ -78,7 +91,8 @@ class Terminal extends React.Component {
             lineValue,
             deltaPosition,
             controlledPosition,
-            position
+            position,
+            historyCommandPos
         } = this.state;
         return (
             <Draggable bounds="body" {...dragHandlers}>
@@ -90,7 +104,7 @@ class Terminal extends React.Component {
                         }
                     }
                     position={position}
-                > 
+                >
                     <Header
                         termId={id}
                         deleteTerm={deleteTerm}
@@ -120,7 +134,7 @@ class Terminal extends React.Component {
                                 innerRef={this.textInput}
                                 value={lineValue}
                                 onChange={e => this.handleChangeValue(e.target.value)}
-                                onKeyDown={e => this.handleSpecificEvents(e)}
+                                onKeyDown={e => this.handleSpecificEvents(e, commands)}
                             />
                         </StyledForm>
                     </InputLineContainer>
