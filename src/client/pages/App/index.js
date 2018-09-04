@@ -49,6 +49,7 @@ const App = ({
     </Container>
 );
 
+
 App.propTypes = propTypes;
 
 const mapStateToProps = state => ({

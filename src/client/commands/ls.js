@@ -10,9 +10,8 @@ import {
     without
 } from 'ramda';
 
-const getFolders = (path, tree) => {
+export const getFolders = (path, tree) => {
     let folders = [];
-    let files = [];
     let ret = [];
     let tmp = tree;
 
@@ -20,11 +19,22 @@ const getFolders = (path, tree) => {
         tmp = tmp[loc];
     },drop(1, path));
     folders =  without('files',keys(tmp));
-    files = tmp.files
     ret = map(folder => ({
         value: folder,
         color: 'rgb(96,253,255)'
     }), folders);
+    return ret;
+};
+
+export const getFiles = (path, tree) => {
+    let files = [];
+    let ret = [];
+    let tmp = tree;
+
+    map(loc => {
+        tmp = tmp[loc];
+    },drop(1, path));
+    files = tmp.files;
     ret = [...ret, ...map(file => ({
         value: file,
         color: 'white'
@@ -37,7 +47,8 @@ const ls = termId => {
     const term = find(propEq('id', termId))(terms);
     const { path, tree } = term;
     const folders = getFolders(path, tree);
-    return folders;
+    const files = getFiles(path, tree);
+    return [...folders, ...files];
 };
 
 export default ls;

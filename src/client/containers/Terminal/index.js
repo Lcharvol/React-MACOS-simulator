@@ -48,13 +48,18 @@ class Terminal extends React.Component {
             y: y + ui.deltaY,
             }
         });
-    }
+    };
     handleChangeValue(newValue) {
         this.setState({ lineValue: newValue });
-    }
-    
+    };
     focusTextInput() {
         this.textInput.current.focus();
+    };
+    handleSpecificEvents(e) {
+        if (e.keyCode == 9) {
+            e.preventDefault();
+            alert("Execute ajax call after tab pressed");
+          }
     }
     render() {
         const {
@@ -115,6 +120,7 @@ class Terminal extends React.Component {
                                 innerRef={this.textInput}
                                 value={lineValue}
                                 onChange={e => this.handleChangeValue(e.target.value)}
+                                onKeyDown={e => this.handleSpecificEvents(e)}
                             />
                         </StyledForm>
                     </InputLineContainer>

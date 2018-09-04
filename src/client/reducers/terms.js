@@ -2,11 +2,14 @@ import {
     propEq,
     findIndex,
     map,
+    drop,
     equals,
     length,
     dropLast,
+    takeLast,
     isNil,
     isEmpty,
+    assocPath,
     remove
 } from 'ramda';
 import uuidv4 from 'uuid/v4';
@@ -16,7 +19,8 @@ import {
     ADD_NEW_LINE,
     CHANGE_LOCATION,
     CLEAR_TERM,
-    DELETE_TERM
+    DELETE_TERM,
+    ADD_REPOSITORY
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
@@ -60,9 +64,17 @@ const reducer = (state = initialState, action) => {
             const termIndex = findIndex(propEq('id', action.termId))(state);
             return remove(termIndex, 1, state)
         };
-        case ADD_NEW_TERM:{
+        case ADD_NEW_TERM: {
             return [...state, action.newTerm];
-        }
+        };
+        case ADD_REPOSITORY: {
+            const { termId, name } = action;
+            const term = state[findIndex(propEq('id', action.termId))(state)];
+            const { path, tree } = term;
+
+            term.tree = assocPath([...drop(1, path), name], {files: []}, term.tree);
+            return [...state];
+        };
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
 

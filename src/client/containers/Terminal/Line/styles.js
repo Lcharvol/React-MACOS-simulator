@@ -21,7 +21,7 @@ export const MainContent = styled.div`
     display:flex;
     justify-content: flex-start;
     align-items: center;
-    width:calc(100% - 10px);
+    width:100%;
     min-height:25px;
     color:white;
     font-weight:0;

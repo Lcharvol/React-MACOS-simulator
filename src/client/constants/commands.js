@@ -1,7 +1,8 @@
 import {
     ls,
     cd,
-    clear
+    clear,
+    mkdir
 } from '../commands'
 
 export const supportedCommands = [
@@ -16,5 +17,9 @@ export const supportedCommands = [
     {
         name: 'clear',
         action: (termId) => clear(termId),
+    },
+    {
+        name: 'mkdir',
+        action: (termId, name) => mkdir(termId, name),
     }
 ]

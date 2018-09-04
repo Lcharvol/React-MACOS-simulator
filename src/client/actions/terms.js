@@ -13,6 +13,8 @@ export const CLEAR_TERM = "term:command:clear";
 
 export const DELETE_TERM = "term:delete";
 
+export const ADD_REPOSITORY = "term:mkdir";
+
 export const addNewTerm = () => ({ type: ADD_NEW_TERM, newTerm: {...initialTerm, id: uuidv4()} });
 
 export const addNewLine = (termId, location, line, ret) => ({ type: ADD_NEW_LINE, termId, location, line, ret });
@@ -22,3 +24,5 @@ export const changeLocation = (dest, termId) => ({ type: CHANGE_LOCATION, dest, 
 export const clearTerm = (termId) => ({ type: CLEAR_TERM, termId });
 
 export const deleteTerm = termId => ({ type: DELETE_TERM, termId });
+
+export const addRepository = (termId, name) => ({ type: ADD_REPOSITORY, termId, name });

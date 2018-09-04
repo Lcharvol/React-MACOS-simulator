@@ -4,6 +4,10 @@ import {
     propEq,
     drop,
     keys,
+    isEmpty,
+    length,
+    takeLast,
+    dropLast,
     contains
 } from 'ramda';
 
@@ -24,13 +28,27 @@ const isDestAvailaible = (termId, dest, state) => {
     return false;
 };
 
+const goBack = (dest, state, termId) => {
+    const { terms } = state;
+    const termIndex = findIndex(propEq('id', termId))(terms);
+    const term = terms[termIndex];
+    const { tree, path } = term;
+
+    if(length(path) <= 1)
+        return '~';
+    return takeLast(1, dropLast(1, path))[0];
+};
+
 const cd = (termId, dest) => {
     const state = store.getState();
-    if(dest === '~') {
-        store.dispatch(changeLocation(dest, termId));
+    if(dest === '.')
         return;
-    };
-    if(!isDestAvailaible(termId, dest, state)) {
+    else if(dest === '..') {
+        dest = goBack(dest, state, termId);
+    } else if(dest === '~' || dest === '') {
+        store.dispatch(changeLocation('~', termId));
+        return;
+    } else if(!isDestAvailaible(termId, dest, state)) {
         return [{
             value: "cd: no such file or directory: " + dest,
             color: 'white',
