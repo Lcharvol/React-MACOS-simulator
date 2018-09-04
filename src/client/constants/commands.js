@@ -2,7 +2,8 @@ import {
     ls,
     cd,
     clear,
-    mkdir
+    mkdir,
+    touch
 } from '../commands'
 
 export const supportedCommands = [
@@ -21,5 +22,9 @@ export const supportedCommands = [
     {
         name: 'mkdir',
         action: (termId, name) => mkdir(termId, name),
+    },
+    {
+        name: 'touch',
+        action: (termId, name) => touch(termId, name),
     }
 ]

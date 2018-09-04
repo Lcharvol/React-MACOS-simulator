@@ -2,10 +2,12 @@ import ls from './ls';
 import cd from './cd';
 import clear from './clear';
 import mkdir from './mkdir';
+import touch from './touch';
 
 export {
     ls,
     cd,
     clear,
-    mkdir
+    mkdir,
+    touch
 };

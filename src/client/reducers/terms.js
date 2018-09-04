@@ -3,13 +3,13 @@ import {
     findIndex,
     map,
     drop,
-    equals,
     length,
     dropLast,
     takeLast,
     isNil,
     isEmpty,
     assocPath,
+    path as ramdaPath,
     remove
 } from 'ramda';
 import uuidv4 from 'uuid/v4';
@@ -20,7 +20,8 @@ import {
     CHANGE_LOCATION,
     CLEAR_TERM,
     DELETE_TERM,
-    ADD_REPOSITORY
+    ADD_REPOSITORY,
+    ADD_FILE
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 
@@ -75,6 +76,17 @@ const reducer = (state = initialState, action) => {
             term.tree = assocPath([...drop(1, path), name], {files: []}, term.tree);
             return [...state];
         };
+        case ADD_FILE: {
+            const { termId, name } = action;
+            const term = state[findIndex(propEq('id', action.termId))(state)];
+            const { path, tree } = term;
+
+            term.tree = assocPath([...drop(1, path), 'files'], [
+                ...ramdaPath(drop(1, path), term.tree).files,
+                name
+            ], term.tree);
+            return [...state];
+        }
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
 

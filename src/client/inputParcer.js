@@ -25,7 +25,7 @@ export const getCommand = (line, termId) => {
         else if(name === 'clear') {
             action(termId);
             return null;
-        } else if(name === 'mkdir')
+        } else if(name === 'mkdir' || name === 'touch')
             ret = action(termId, words[1]);
         if(!isNil(ret))
             return ret

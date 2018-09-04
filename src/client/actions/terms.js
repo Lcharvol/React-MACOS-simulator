@@ -15,6 +15,8 @@ export const DELETE_TERM = "term:delete";
 
 export const ADD_REPOSITORY = "term:mkdir";
 
+export const ADD_FILE = "term:touch";
+
 export const addNewTerm = () => ({ type: ADD_NEW_TERM, newTerm: {...initialTerm, id: uuidv4()} });
 
 export const addNewLine = (termId, location, line, ret) => ({ type: ADD_NEW_LINE, termId, location, line, ret });
@@ -26,3 +28,5 @@ export const clearTerm = (termId) => ({ type: CLEAR_TERM, termId });
 export const deleteTerm = termId => ({ type: DELETE_TERM, termId });
 
 export const addRepository = (termId, name) => ({ type: ADD_REPOSITORY, termId, name });
+
+export const addFile = (termId, name) => ({ type: ADD_FILE, termId, name });
