@@ -20,9 +20,9 @@ Supported UNIX command:
 ```console
 ls (WIP)
 cd (WIP)
-clear (WIP)
-mkdir (INC)
-touch (INC)
+clear (DONE)
+mkdir (DONE)
+touch (WIP)
 ```
 
  Then go to: http://localhost:8080/
