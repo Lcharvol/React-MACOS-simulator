@@ -4,7 +4,8 @@ import {
     clear,
     mkdir,
     touch,
-    rm
+    rm,
+    exit
 } from '../commands'
 
 export const supportedCommands = [
@@ -31,5 +32,9 @@ export const supportedCommands = [
     {
         name: 'rm',
         action: (termId, name) => rm(termId, name),
+    },
+    {
+        name: 'exit',
+        action: (termId) => exit(termId),
     }
 ]

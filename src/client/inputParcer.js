@@ -22,14 +22,12 @@ export const getCommand = (line, termId) => {
         const { name, action } = command;
 
         store.dispatch(addToCommandsHistory(termId, line))
-        if(name === 'cd')
-            ret = action(termId, words[1]);
-        else if(name === 'ls')
+        if(name === 'ls')
             ret = action(termId);
-        else if(name === 'clear') {
+        else if(name === 'clear' || name === 'exit') {
             action(termId);
             return null;
-        } else if(name === 'mkdir' || name === 'touch' || name === 'rm')
+        } else if(name === 'mkdir' || name === 'touch' || name === 'rm' || name === 'cd')
             ret = action(termId, words[1]);
         if(!isNil(ret))
             return ret

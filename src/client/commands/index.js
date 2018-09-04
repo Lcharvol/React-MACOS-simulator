@@ -4,6 +4,7 @@ import clear from './clear';
 import mkdir from './mkdir';
 import touch from './touch';
 import rm from './rm';
+import exit from './exit';
 
 export {
     ls,
@@ -11,5 +12,6 @@ export {
     clear,
     mkdir,
     touch,
-    rm
+    rm,
+    exit
 };
