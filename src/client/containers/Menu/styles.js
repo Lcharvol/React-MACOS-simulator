@@ -8,6 +8,7 @@ export const Container = styled.div`
     width: 100%;
     height:50px;
     align-self:flex-end;
+    z-index:100000;
 `;
 
 export const Bar = styled.div`

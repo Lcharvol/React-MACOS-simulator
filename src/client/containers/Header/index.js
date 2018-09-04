@@ -1,14 +1,19 @@
 import React from 'react';
 
 import {
-    Container
+    Container,
+    Content
 } from './styles';
+import Time from '../../components/Time';
 
 const Header = ({
     
 }) => (
     <Container>
+        <Content>
 
+        </Content>
+        <Time/>
     </Container>
 );
 
