@@ -3,10 +3,13 @@ import uuidv4 from 'uuid/v4';
 const initialTree = {
     files:["HelloWorld.c", "test", "test2", "test3", "test4", "test5"],
     Desktop:{
+        files: [],
     },
     Documents: {
+        files: [],
     },
     Downloads: {
+        files: [],
     }
 }
 

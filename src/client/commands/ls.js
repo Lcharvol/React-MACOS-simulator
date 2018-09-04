@@ -12,10 +12,11 @@ import {
     omit
 } from 'ramda';
 
-export const getFolders = (path, tree) => map(folder => ({
-    value: folder,
-    color: 'rgb(96,253,255)'
-}),omit(['files'],ramdaPath(drop(1, path), tree)));
+export const getFolders = (path, tree) => map(key => ({
+        value: key,
+        color: 'rgb(96,253,255)'
+    }),without('files', keys(ramdaPath(drop(1, path), tree)))
+);
 
 export const getFiles = (path, tree) => map(file => ({
         value: file,
@@ -26,10 +27,9 @@ const ls = termId => {
     const { terms } = store.getState();
     const term = find(propEq('id', termId))(terms);
     const { path, tree } = term;
-    console.log('path: ', path);
     const folders = getFolders(path, tree);
-    console.log('folders: ', folders)
     const files = getFiles(path, tree);
+    
     return [...folders, ...files];
 };
 
