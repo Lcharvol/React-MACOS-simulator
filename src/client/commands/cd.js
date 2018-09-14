@@ -4,7 +4,6 @@ import {
     propEq,
     drop,
     keys,
-    isEmpty,
     length,
     takeLast,
     dropLast,

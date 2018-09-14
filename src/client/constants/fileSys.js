@@ -6,6 +6,9 @@ export const initialFileSys = {
         Divers: {
             files: []
         },
+        Projects: {
+            files: []
+        },
         files: ['coucou.sh'],
     },
     Documents: {
