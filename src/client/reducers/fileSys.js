@@ -24,16 +24,14 @@ import {
 const reducer = (state = initialFileSys, action) => {
   switch (action.type) {
     case ADD_REPOSITORY: {
-      const { termId, name } = action;
-      const term = state[findIndex(propEq('id', action.termId))(state)];
-      const { path, tree } = term;
+      const { path, name } = action;
 
-      term.tree = assocPath(
+      state = assocPath(
           [...drop(1, path), name],
           { files: [] },
-          term.tree
+          state
       );
-      return [...state];
+      return {...state};
   };
   case ADD_FILE: {
       const { path, name } = action;
@@ -49,16 +47,14 @@ const reducer = (state = initialFileSys, action) => {
       return {...state};
   };
   case REMOVE_FILE: {
-      const { termId, name } = action;
-      const term = state[findIndex(propEq('id', action.termId))(state)];
-      const { path, tree } = term;
+      const { path, name } = action;
 
-      term.tree = assocPath(
+      state = assocPath(
           [...drop(1, path), 'files'],
-          without(name, ramdaPath(drop(1, path), term.tree).files),
-          term.tree
+          without(name, ramdaPath(drop(1, path), state).files),
+          state
       );
-      return [...state];
+      return {...state};
   };
     default:
       return state;

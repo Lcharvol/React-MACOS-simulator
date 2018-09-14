@@ -6,14 +6,14 @@ import {
 
 import { store } from '../index';
 import { getFiles } from './ls';
-import { removeFile } from '../actions/terms';
+import { removeFile } from '../actions/fileSys';
 
 const rm = (termId, name) => {
     const state = store.getState();
-    const { terms } = store.getState();
+    const { terms, fileSys } = store.getState();
     const term = find(propEq('id', termId))(terms);
-    const { path, tree } = term;
-    const files = getFiles(path, tree);
+    const { path } = term;
+    const files = getFiles(path, fileSys);
     const isFileExisting = !isNil(find(propEq('value', name))(files));
     
     if(isNil(name))
@@ -26,7 +26,7 @@ const rm = (termId, name) => {
             value: `rm: ${name}: File doesn't exists`,
             color: 'white',
         }];
-    store.dispatch(removeFile(termId, name));
+    store.dispatch(removeFile(path, name));
     return;
 };
 

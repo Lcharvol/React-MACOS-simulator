@@ -15,11 +15,11 @@ import { store } from '../index';
 import { changeLocation } from '../actions/terms';
 
 const isDestAvailaible = (termId, dest, state) => {
-    const { terms } = state;
+    const { terms, fileSys } = state;
     const termIndex = findIndex(propEq('id', termId))(terms);
     const term = terms[termIndex];
-    const { tree, path } = term;
-    let tmp = tree;
+    const { path } = term;
+    let tmp = fileSys;
     
     map(loc => {
         tmp = tmp[loc];
@@ -33,7 +33,7 @@ const goBack = (dest, state, termId) => {
     const { terms } = state;
     const termIndex = findIndex(propEq('id', termId))(terms);
     const term = terms[termIndex];
-    const { tree, path } = term;
+    const { path } = term;
 
     if(length(path) <= 1)
         return '~';

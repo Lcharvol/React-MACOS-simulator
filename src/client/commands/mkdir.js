@@ -6,14 +6,13 @@ import {
 
 import { store } from '../index';
 import { getFolders } from './ls';
-import { addRepository } from '../actions/terms';
+import { addRepository } from '../actions/fileSys';
 
 const mkdir = (termId, name) => {
-    const state = store.getState();
-    const { terms } = store.getState();
+    const { terms, fileSys } = store.getState();
     const term = find(propEq('id', termId))(terms);
-    const { path, tree } = term;
-    const folders = getFolders(path, tree);
+    const { path } = term;
+    const folders = getFolders(path, fileSys);
     const isFolderExisting = !isNil(find(propEq('value', name))(folders));
     
     if(isNil(name))
@@ -26,7 +25,7 @@ const mkdir = (termId, name) => {
             value: `mkdir: ${name}: File exists`,
             color: 'white',
         }];
-    store.dispatch(addRepository(termId, name));
+    store.dispatch(addRepository(path, name));
     return;
 };
 
