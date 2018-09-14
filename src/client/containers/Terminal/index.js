@@ -81,6 +81,7 @@ class Terminal extends React.Component {
                     commands,
                 }
             },
+            fileSys,
             addNewLine,
             topTermPosition,
             changeTopTermPosition,

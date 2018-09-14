@@ -1,0 +1,1 @@
+export const getFileSys = state => state.fileSys;

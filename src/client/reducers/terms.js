@@ -78,45 +78,6 @@ const reducer = (state = initialState, action) => {
         case ADD_NEW_TERM: {
             return [...state, action.newTerm];
         };
-        case ADD_REPOSITORY: {
-            const { termId, name } = action;
-            const term = state[findIndex(propEq('id', action.termId))(state)];
-            const { path, tree } = term;
-
-            term.tree = assocPath(
-                [...drop(1, path), name],
-                { files: [] },
-                term.tree
-            );
-            return [...state];
-        };
-        case ADD_FILE: {
-            const { termId, name } = action;
-            const term = state[findIndex(propEq('id', action.termId))(state)];
-            const { path, tree } = term;
-
-            term.tree = assocPath(
-                [...drop(1, path), 'files'],
-                [
-                    ...ramdaPath(drop(1, path), term.tree).files,
-                    name
-                ],
-                term.tree
-            );
-            return [...state];
-        };
-        case REMOVE_FILE: {
-            const { termId, name } = action;
-            const term = state[findIndex(propEq('id', action.termId))(state)];
-            const { path, tree } = term;
-
-            term.tree = assocPath(
-                [...drop(1, path), 'files'],
-                without(name, ramdaPath(drop(1, path), term.tree).files),
-                term.tree
-            );
-            return [...state];
-        };
         case ADD_NEW_LINE: {
             const termIndex = findIndex(propEq('id', action.termId))(state);
 

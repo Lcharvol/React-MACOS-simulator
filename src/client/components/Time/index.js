@@ -37,7 +37,7 @@ export default compose(
     ),
     lifecycle({
         componentDidMount() {
-            setInterval(() => console.log('test'), 1000);
+            // setInterval(() => {}, 1000);
         },
     }),
 )(Time);

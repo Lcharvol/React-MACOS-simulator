@@ -4,7 +4,8 @@ const initialState = {
   topTermPosition: 0,
   menu: {
     shortcuts: ['termux', 'document'],
-  }
+  },
+  file_sys: []
 };
 
 const reducer = (state = initialState, action) => {
