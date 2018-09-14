@@ -19,7 +19,7 @@ import {
   ADD_REPOSITORY,
   ADD_FILE,
   REMOVE_FILE
-} from '../actions/terms';
+} from '../actions/fileSys';
 
 const reducer = (state = initialFileSys, action) => {
   switch (action.type) {
@@ -46,7 +46,7 @@ const reducer = (state = initialFileSys, action) => {
           ],
           state
       );
-      return [...state];
+      return {...state};
   };
   case REMOVE_FILE: {
       const { termId, name } = action;

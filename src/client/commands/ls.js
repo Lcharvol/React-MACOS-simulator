@@ -24,11 +24,12 @@ export const getFiles = (path, tree) => map(file => ({
     }),ramdaPath([...drop(1, path), 'files'], tree));
 
 const ls = termId => {
-    const { terms } = store.getState();
+    const { terms, fileSys } = store.getState();
+    console.log('fileSys: ', fileSys);
     const term = find(propEq('id', termId))(terms);
-    const { path, tree } = term;
-    const folders = getFolders(path, tree);
-    const files = getFiles(path, tree);
+    const { path } = term;
+    const folders = getFolders(path, fileSys);
+    const files = getFiles(path, fileSys);
     
     return [...folders, ...files];
 };
