@@ -18,12 +18,12 @@ yarn cli
 Supported UNIX command:
 
 ```console
-ls (WIP)
-cd (WIP)
+ls (DONE)
+cd (DONE)
 clear (DONE)
 mkdir (DONE)
 touch (DONE)
-rm (INC)
+rm (WIP)
 ```
 
 Supported shortcuts:
@@ -31,6 +31,7 @@ Supported shortcuts:
 ```console
  tab (INC)
 ```
+
  Then go to: http://localhost:8080/
   
 # Preview
