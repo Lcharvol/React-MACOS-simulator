@@ -25,7 +25,6 @@ export const getFiles = (path, tree) => map(file => ({
 
 const ls = termId => {
     const { terms, fileSys } = store.getState();
-    console.log('fileSys: ', fileSys);
     const term = find(propEq('id', termId))(terms);
     const { path } = term;
     const folders = getFolders(path, fileSys);

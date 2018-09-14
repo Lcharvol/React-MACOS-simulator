@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, FolderIcon } from './styles';
 
 const Folder = ({
     name
 }) => (
     <Container>
+        <FolderIcon />
         {name}
     </Container>
 );

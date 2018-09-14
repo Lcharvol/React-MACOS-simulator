@@ -16,7 +16,7 @@ import Header from '../../containers/Header';
 import Desktop from '../../containers/Desktop';
 import { getTerms } from '../../selectors/term';
 import { getTopTermPosition } from '../../selectors/app';
-import { getFileSys } from '../../selectors/fileSys';
+import { getFileSys, getDesktopFileSys } from '../../selectors/fileSys';
 
 const propTypes = {
     terms: array.isRequired,
@@ -32,11 +32,12 @@ const App = ({
     changeTopTermPosition,
     topTermPosition,
     deleteTerm,
-    fileSys
+    fileSys,
+    desktopFileSys
 }) => (
     <Container>
         <Header />
-        <Desktop/>
+        <Desktop desktopFileSys={desktopFileSys}/>
         <Content>
             {map(term =>
                 <Terminal
@@ -61,6 +62,7 @@ const mapStateToProps = state => ({
     fileSys: getFileSys(state),
     terms: getTerms(state),
     topTermPosition: getTopTermPosition(state),
+    desktopFileSys: getDesktopFileSys(state),
   });
   
 const actions = { addNewLine, changeTopTermPosition, deleteTerm };
