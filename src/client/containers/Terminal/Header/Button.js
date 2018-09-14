@@ -1,11 +1,27 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-import { ButtonContainer } from './styles';
+import {
+    ButtonContainer,
+    IconContainer,
+    CloseButtonIcon,
+    MinusButtonIcon,
+    ExpendButtonIcon
+} from './styles';
+import { RED_BUTTON, YELLOW_BUTTON, GREEN_BUTTON } from '../../../constants/colors';
 
 const propTypes = {
     color: string.isRequired,
-}
+};
+
+const getButtonIcon = color => {
+    if(color === RED_BUTTON)
+        return <CloseButtonIcon />;
+    else if(color === YELLOW_BUTTON)
+        return <MinusButtonIcon />;
+    else if(color === GREEN_BUTTON)
+        return <ExpendButtonIcon />;
+};
 
 const Button = ({
     color,
@@ -16,6 +32,9 @@ const Button = ({
         color={color}
         onClick={() => action(termId)}
     >
+        <IconContainer>
+            {getButtonIcon(color)}
+        </IconContainer>
     </ButtonContainer>
 );
 

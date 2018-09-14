@@ -17,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    position:relative;  
+    position:absolute;
     display:flex;
     justify-content: center;
     align-items: center;

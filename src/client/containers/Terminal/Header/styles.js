@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaTimes, FaMinus, FaArrowsAltH } from 'react-icons/fa';
 
 export const Container = styled.div`
     position:relative;
@@ -14,6 +15,8 @@ export const Container = styled.div`
 export const ButtonContainer = styled.div`
     position:relative;
     display:flex;
+    justify-content: center;
+    align-items: center;
     width:12px;
     height:12px;
     background-color:${({ color }) => color};
@@ -28,4 +31,39 @@ export const ButtonContainer = styled.div`
     &:hover {
         box-shadow:none;
     }
+`;
+
+export const IconContainer = styled.div`
+    position:relative;
+    display:flex;
+    width:50%;
+    height:50%;
+    justify-content: center;
+    align-items: center;
+    opacity:0;
+    &:hover {
+        opacity:1;
+    }
+`;
+
+export const CloseButtonIcon = styled(FaTimes)`
+    position:relative;
+    display:flex;
+    width:100%;
+    color:rgba(25,25,25,0.7);
+`;
+
+export const MinusButtonIcon = styled(FaMinus)`
+    position:relative;
+    display:flex;
+    width:100%;
+    color:rgba(25,25,25,0.7);
+`;
+
+export const ExpendButtonIcon = styled(FaArrowsAltH)`
+    position:relative;
+    display:flex;
+    width:100%;
+    color:rgba(25,25,25,0.7);
+    transform: rotate(-45deg);
 `;

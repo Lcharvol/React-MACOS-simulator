@@ -13,6 +13,7 @@ import { changeTopTermPosition } from '../../actions/app';
 import Terminal from '../../containers/Terminal';
 import Menu from '../../containers/Menu';
 import Header from '../../containers/Header';
+import Desktop from '../../containers/Desktop';
 import { getTerms } from '../../selectors/term';
 import { getTopTermPosition } from '../../selectors/app';
 
@@ -33,6 +34,7 @@ const App = ({
 }) => (
     <Container>
         <Header />
+        <Desktop/>
         <Content>
             {map(term =>
                 <Terminal
