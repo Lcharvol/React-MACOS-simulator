@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 
 import {
     Container,
-    Content
 } from './styles';
 import { addNewLine, deleteTerm } from '../../actions/terms';
 import { changeTopTermPosition } from '../../actions/app';
@@ -38,7 +37,6 @@ const App = ({
     <Container>
         <Header />
         <Desktop desktopFileSys={desktopFileSys}/>
-        <Content>
             {map(term =>
                 <Terminal
                     key={term.id}
@@ -50,7 +48,6 @@ const App = ({
                     deleteTerm={deleteTerm}
                 />
             ,terms)}
-        </Content>
         <Menu />
     </Container>
 );

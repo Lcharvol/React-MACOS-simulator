@@ -7,6 +7,9 @@ export const Container = styled.div`
     flex-direction:column;
     height:120px;
     width:120px;
+    max-height:120px;
+    max-width:120px;
+    overflow:hidden;
     justify-content: center;
     align-items: center;
     color:white;

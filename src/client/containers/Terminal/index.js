@@ -29,27 +29,10 @@ class Terminal extends React.Component {
         this.state = {
             lineValue: '',
             historyCommandPos: 0,
-            activeDrags: 0,
-            deltaPosition: {
-              x: 0, y: 0
-            },
-            controlledPosition: {
-              x: -400, y: 200
-            },
-            position: 0,
         };
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
     }
-    handleDrag(e, ui) {
-        const {x, y} = this.state.deltaPosition;
-        this.setState({
-            deltaPosition: {
-            x: x + ui.deltaX,
-            y: y + ui.deltaY,
-            }
-        });
-    };
     handleChangeValue(newValue) {
         this.setState({ lineValue: newValue });
     };
@@ -87,7 +70,6 @@ class Terminal extends React.Component {
             changeTopTermPosition,
             deleteTerm
         } = this.props;
-        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
         const {
             lineValue,
             deltaPosition,
@@ -95,8 +77,9 @@ class Terminal extends React.Component {
             position,
             historyCommandPos
         } = this.state;
+        
         return (
-            <Draggable bounds="body" {...dragHandlers}>
+            <Draggable bounds="body">
                 <Container
                     onClick={(e) => {
                             this.focusTextInput(e);

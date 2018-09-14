@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    position:relative;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -14,13 +15,4 @@ export const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-`;
-
-export const Content = styled.div`
-    position:absolute;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    width:100%;
-    height:100%;
 `;
