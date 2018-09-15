@@ -47,4 +47,4 @@ Supported features:
   
 # Preview
 
-<img width="100%" src="https://user-images.githubusercontent.com/23408500/45041151-e41c9a80-b067-11e8-929a-6abe887657fd.png"/>
+<img width="100%" src="https://user-images.githubusercontent.com/23408500/45589543-c7b21500-b927-11e8-9486-e4ba6678c1ee.png"/>
