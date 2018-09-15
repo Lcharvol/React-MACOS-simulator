@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
     position:relative;
     height:100%;
-    width:${({ width }) => width};
-    height:${({ height }) => height};
+    width:${({ width }) => width}px;
+    height:${({ height }) => height}px;
 `;
 
 export const Corner = styled.div`

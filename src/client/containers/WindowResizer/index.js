@@ -6,96 +6,99 @@ import {
     Corner,
     Side
 } from './styles';
-
-const corners = [
-    {
-        id: 0,
-        top:0,
-        left:0,
-        cursor: 'nw-resize'
-    },
-    {
-        id: 1,
-        bottom:0,
-        left:0,
-        cursor: 'sw-resize'
-    },
-    {
-        id: 2,
-        top:0,
-        right:0,
-        cursor: 'ne-resize'
-    },
-    {
-        id: 3,
-        bottom:0,
-        right:0,
-        cursor: 'se-resize'
-    }
-];
-
-const sides = [
-    {
-        id:0,
-        width:'5px',
-        height:'100%',
-        left:0,
-        top:0,
-        cursor: 'w-resize',
-    },
-    {
-        id:1,
-        width:'5px',
-        height:'100%',
-        right:0,
-        top:0,
-        cursor: 'e-resize',
-    },
-    {
-        id:2,
-        width:'100%',
-        height:'5px',
-        left:0,
-        top:0,
-        cursor: 'n-resize',
-    },
-    {
-        id:3,
-        width:'100%',
-        height:'5px',
-        left:0,
-        bottom:0,
-        cursor: 's-resize',
-    },
-]
+import {
+    corners,
+    sides,
+    MIN_HEIGHT,
+    MIN_WIDTH
+} from './constants';
 
 class WindowResizer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            wh: '100px', 
-            ww: '100px'
+            wh: 450, 
+            ww: 700,
+            dragingX: false,
+            dragingY: false,
+            startDragX: 0,
+            startDragY: 0
         };
+        this.handleChangeDraging = this.handleChangeDraging.bind(this);
+        this.handleChangeWindowSize = this.handleChangeWindowSize.bind(this);
+    }
+
+    handleChangeDraging(e, dragingXValue, dragingYValue) {
+        this.setState({ dragingX: dragingXValue, dragingY: dragingYValue })
+    };
+
+    handleChangeWindowSize(e) {
+        if(this.state.dragingX || this.state.dragingY) {
+            const diffX = this.state.dragingX ? (2 * (e.screenX - this.state.startDragX)) : 0;
+            const diffY = this.state.dragingY ? (2 * (e.screenY - this.state.startDragY)) : 0;
+            this.setState({
+                ww: this.state.ww + diffX > MIN_WIDTH ? this.state.ww + diffX : this.state.ww,
+                wh: this.state.wh + diffY > MIN_HEIGHT ? this.state.wh + diffY : this.state.wh,
+                startDragX: e.screenX,
+                startDragY: e.screenY,
+            })
+        }
+    }
+
+    componentDidMount = () => {
+        window.addEventListener('mousemove', this.handleChangeWindowSize)
+        window.addEventListener('mouseup', this.handleChangeDraging, false)
+    }
+    componentWillUnmount = () => {
+        window.removeEventListener('mousemove', this.handleChangeWindowSize)
     }
 
     render() {
-        const { ww, wh } = this.state;
-        const { children } = this.props;
-        
+        const {
+            ww,
+            wh,
+            draging,
+            startDragX,
+            startDragY
+        } = this.state;
+        const {
+            children,
+            handleChangeDraging
+        } = this.props;
         return (
             <Container width={ww} height={wh}>
                 {map(corner =>
                     <Corner
+                        onMouseDown={e => {
+                            e.stopPropagation();
+                            this.handleChangeDraging(e, true, true)
+                            this.setState({
+                                startDragX: e.screenX,
+                                startDragY: e.screenY
+                            })
+                        }}
+                        key={corner.id}
                         top={!isNil(corner.top) ? corner.top : ''}
                         bottom={!isNil(corner.bottom) ? corner.bottom : ''}
                         left={!isNil(corner.left) ? corner.left : ''}
                         right={!isNil(corner.right) ? corner.right : ''}
                         cursor={corner.cursor}
-                        key={corner.id}
                     />, corners)}
                 {map(side =>
                 <Side
+                    onMouseDown={e => {
+                        e.stopPropagation();
+                        this.handleChangeDraging(
+                            e,
+                            side.axe === 'startDragX' ? true : false,
+                            side.axe === 'startDragY' ? true : false,
+                        )
+                        this.setState({
+                            [side.axe]: e[side.eventValue],
+                        })
+                    }}
+                    key={side.id}
                     width={side.width}
                     height={side.height}
                     top={!isNil(side.top) ? side.top : ''}
@@ -103,7 +106,6 @@ class WindowResizer extends React.Component {
                     left={!isNil(side.left) ? side.left : ''}
                     right={!isNil(side.right) ? side.right : ''}
                     cursor={side.cursor}
-                    key={side.id}
                 />, sides)}
                 {children}
             </Container>
