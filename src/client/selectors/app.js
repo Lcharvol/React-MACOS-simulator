@@ -1,5 +1,5 @@
 import {
-    find,
+    findIndex,
     propEq
 } from 'ramda';
 
@@ -9,8 +9,8 @@ export const getShortcuts = state => state.app.menu.shortcuts;
 
 export const getDesktops = state => state.app.desktops;
 
-export const getActiveDesktop = state => {
+export const getActiveDesktopPos = state => {
     const desktops = getDesktops(state);
 
-    return find(propEq('active', true))(desktop);
+    return findIndex(propEq('active', true))(desktops);
 }

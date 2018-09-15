@@ -10,13 +10,17 @@ import {
     DesktopElem
 } from './styles';
 import { addNewLine, deleteTerm } from '../../actions/terms';
-import { changeTopTermPosition } from '../../actions/app';
+import {
+    changeTopTermPosition,
+    desktopGoLeft,
+    desktopGoRight
+} from '../../actions/app';
 import Terminal from '../../containers/Terminal';
 import Menu from '../../containers/Menu';
 import Header from '../../containers/Header';
 import Desktop from '../../containers/Desktop';
 import { getTerms } from '../../selectors/term';
-import { getTopTermPosition, getDesktops } from '../../selectors/app';
+import { getTopTermPosition, getDesktops, getActiveDesktopPos } from '../../selectors/app';
 import { getFileSys, getDesktopFileSys } from '../../selectors/fileSys';
 
 const propTypes = {
@@ -49,9 +53,9 @@ class App extends React.Component {
         const evtobj = window.event? event : e
         
         if (evtobj.keyCode == 39 && evtobj.metaKey)
-            console.log('go right');
+            this.props.desktopGoRight();
         if (evtobj.keyCode == 37 && evtobj.metaKey)
-            console.log('go left');
+            this.props.desktopGoLeft();
     };
 
     render() {
@@ -63,11 +67,12 @@ class App extends React.Component {
         deleteTerm,
         fileSys,
         desktopFileSys,
-        desktops
+        desktops,
+        activeDesktopPos
     } = this.props;
     return (
         <Container>
-            <Desktops>
+            <Desktops activeDesktopPos={activeDesktopPos}>
                 {map(desktop => (
                     <DesktopElem key={desktop.id}>
                         <Header />
@@ -100,10 +105,17 @@ const mapStateToProps = state => ({
     terms: getTerms(state),
     topTermPosition: getTopTermPosition(state),
     desktopFileSys: getDesktopFileSys(state),
-    desktops: getDesktops(state)
+    desktops: getDesktops(state),
+    activeDesktopPos: getActiveDesktopPos(state)
   });
   
-const actions = { addNewLine, changeTopTermPosition, deleteTerm };
+const actions = {
+    addNewLine,
+    changeTopTermPosition,
+    deleteTerm,
+    desktopGoLeft,
+    desktopGoRight
+};
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
