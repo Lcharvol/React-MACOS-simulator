@@ -16,3 +16,16 @@ export const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 `;
+
+export const Desktops = styled.div`
+    position:relative;
+    height:100%;
+`;
+
+export const DesktopElem = styled.div`
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    width:100vw;
+    height:calc(100vh);
+`;

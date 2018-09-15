@@ -5,6 +5,18 @@ const initialState = {
   menu: {
     shortcuts: ['termux', 'document'],
   },
+  desktops: [
+    {
+      id: 0,
+      active: true,
+      topTermPosition: 0
+    },
+    {
+      id: 1,
+      active: false,
+      topTermPosition: 0
+    }
+  ],
   file_sys: []
 };
 

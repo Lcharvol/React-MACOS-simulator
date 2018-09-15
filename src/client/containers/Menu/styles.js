@@ -21,6 +21,6 @@ export const Bar = styled.div`
     padding-right:5px;
     background-color:rgb(175,175,175,0.6);
     margin-bottom:${({ displayMenu }) => displayMenu ? 0 : '-80px'};
-    border-radius:3px;
+    border-radius:3px 3px 0 0;
     transition: margin-bottom 0.1s ease-in-out;
 `;

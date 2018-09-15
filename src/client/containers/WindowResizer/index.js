@@ -35,8 +35,8 @@ class WindowResizer extends React.Component {
 
     handleChangeWindowSize(e) {
         if(this.state.dragingX || this.state.dragingY) {
-            const diffX = this.state.dragingX ? (2 * (e.screenX - this.state.startDragX)) : 0;
-            const diffY = this.state.dragingY ? (2 * (e.screenY - this.state.startDragY)) : 0;
+            const diffX = this.state.dragingX ? (e.screenX - this.state.startDragX) : 0;
+            const diffY = this.state.dragingY ? (e.screenY - this.state.startDragY) : 0;
             this.setState({
                 ww: this.state.ww + diffX > MIN_WIDTH ? this.state.ww + diffX : this.state.ww,
                 wh: this.state.wh + diffY > MIN_HEIGHT ? this.state.wh + diffY : this.state.wh,
