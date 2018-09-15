@@ -32,6 +32,17 @@ Supported shortcuts:
  tab (INC)
 ```
 
+Supported features:
+
+```console
+ - term
+ - menu
+ - Finder (INC)
+ - Folder/File drag and drop (WIP)
+ - Windows resize (WIP)
+ 
+```
+
  Then go to: http://localhost:8080/
   
 # Preview
