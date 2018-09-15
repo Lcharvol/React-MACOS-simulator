@@ -12,6 +12,7 @@ import {
 } from './styles';
 import { getCommand } from '../../inputParcer';
 import { Arrow, Location } from './Line/styles';
+import WindowResizer from '../WindowResizer';
 import Header from './Header';
 import Line from './Line';
 
@@ -89,6 +90,7 @@ class Terminal extends React.Component {
                     }
                     position={position}
                 >
+                    <WindowResizer>
                     <Header
                         termId={id}
                         deleteTerm={deleteTerm}
@@ -122,6 +124,7 @@ class Terminal extends React.Component {
                             />
                         </StyledForm>
                     </InputLineContainer>
+                    </WindowResizer>
                 </Container>
             </Draggable>
         );
