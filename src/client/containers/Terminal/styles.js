@@ -6,8 +6,6 @@ export const Container = styled.div`
     display:flex;
     justify-content:flex-start;
     flex-direction:column;
-    width: 800px;
-    height: 500px;
     border-radius:3px;
     background-color:rgba(20,20, 21, 0.8);
     overflow:hidden;

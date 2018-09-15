@@ -69,30 +69,46 @@ const sides = [
     },
 ]
 
-const WindowResizer = (props) => (
-    <Container>
-        {map(corner =>
-            <Corner
-                top={!isNil(corner.top) ? corner.top : ''}
-                bottom={!isNil(corner.bottom) ? corner.bottom : ''}
-                left={!isNil(corner.left) ? corner.left : ''}
-                right={!isNil(corner.right) ? corner.right : ''}
-                cursor={corner.cursor}
-                key={corner.id}
-            />, corners)}
-        {map(side =>
-        <Side
-            width={side.width}
-            height={side.height}
-            top={!isNil(side.top) ? side.top : ''}
-            bottom={!isNil(side.bottom) ? side.bottom : ''}
-            left={!isNil(side.left) ? side.left : ''}
-            right={!isNil(side.right) ? side.right : ''}
-            cursor={side.cursor}
-            key={side.id}
-        />, sides)}
-        {props.children}
-    </Container>
-);
+class WindowResizer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            wh: '100px', 
+            ww: '100px'
+        };
+    }
+
+    render() {
+        const { ww, wh } = this.state;
+        const { children } = this.props;
+        
+        return (
+            <Container width={ww} height={wh}>
+                {map(corner =>
+                    <Corner
+                        top={!isNil(corner.top) ? corner.top : ''}
+                        bottom={!isNil(corner.bottom) ? corner.bottom : ''}
+                        left={!isNil(corner.left) ? corner.left : ''}
+                        right={!isNil(corner.right) ? corner.right : ''}
+                        cursor={corner.cursor}
+                        key={corner.id}
+                    />, corners)}
+                {map(side =>
+                <Side
+                    width={side.width}
+                    height={side.height}
+                    top={!isNil(side.top) ? side.top : ''}
+                    bottom={!isNil(side.bottom) ? side.bottom : ''}
+                    left={!isNil(side.left) ? side.left : ''}
+                    right={!isNil(side.right) ? side.right : ''}
+                    cursor={side.cursor}
+                    key={side.id}
+                />, sides)}
+                {children}
+            </Container>
+        )
+    }
+}
 
 export default WindowResizer;

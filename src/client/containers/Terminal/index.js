@@ -69,7 +69,7 @@ class Terminal extends React.Component {
             addNewLine,
             topTermPosition,
             changeTopTermPosition,
-            deleteTerm
+            deleteTerm,
         } = this.props;
         const {
             lineValue,
