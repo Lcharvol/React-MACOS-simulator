@@ -43,24 +43,51 @@ class Terminal extends React.Component {
         this.textInput.current.focus();
     };
     handleSpecificEvents(e, commands) {
+        const ctrlDown = e.ctrlKey||e.metaKey
+        const {
+            term: {
+                id,
+                path,
+            },
+            addNewLine,
+            fileSys,
+            deleteTerm
+        } = this.props;
+        const {
+            lineValue,
+            historyCommandPos
+        } = this.state;
+        if(ctrlDown) {
+            if (e.keyCode == 67) {
+                    addNewLine(
+                    id,
+                    path[dec(length(path))],
+                    lineValue,
+                    ""
+                );
+                this.setState({ lineValue: "" });
+            }
+            if (e.keyCode == 68)
+                deleteTerm(id);
+        }
         if (e.keyCode == 38) {
-            const newHistoryCommandPos = (this.state.historyCommandPos + 1) <= length(commands) ? this.state.historyCommandPos + 1 : this.state.historyCommandPos;
+            const newHistoryCommandPos = (historyCommandPos + 1) <= length(commands) ? historyCommandPos + 1 : historyCommandPos;
             const newValue = commands[length(commands) - newHistoryCommandPos] || '';
 
             e.preventDefault();
             this.setState({ lineValue: newValue, historyCommandPos: newHistoryCommandPos });
         } else if (e.keyCode == 9) {
-            const oldValue = this.state.lineValue;
+            const oldValue = lineValue;
             const existingArgs = concat(
-                getFolders(this.props.term.path, this.props.fileSys),
-                getFiles(this.props.term.path, this.props.fileSys)
+                getFolders(path, fileSys),
+                getFiles(path, fileSys)
             );
             const newValue = autoComplete(oldValue, existingArgs);
             e.preventDefault();
             if(length(newValue) > 0)
                 this.setState({ lineValue: newValue });
         }
-        else if (this.state.historyCommandPos !== 0) {
+        else if (historyCommandPos !== 0) {
             this.setState({ historyCommandPos: 0 });
         }
     }
