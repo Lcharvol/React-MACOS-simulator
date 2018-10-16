@@ -1,6 +1,6 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import { map, equals, length, dec } from 'ramda';
+import { map, equals, length, dec, concat } from 'ramda';
 import { array, func } from 'prop-types';
 
 import {
@@ -14,6 +14,7 @@ import { getCommand } from '../../inputParcer';
 import { Arrow, Location } from './Line/styles';
 import WindowResizer from '../WindowResizer';
 import autoComplete from '../../shortcuts/autoComplete';
+import { getFolders, getFiles } from '../../commands/ls';
 import Header from './Header';
 import Line from './Line';
 
@@ -50,7 +51,11 @@ class Terminal extends React.Component {
             this.setState({ lineValue: newValue, historyCommandPos: newHistoryCommandPos });
         } else if (e.keyCode == 9) {
             const oldValue = this.state.lineValue;
-            const newValue = autoComplete(oldValue)
+            const existingArgs = concat(
+                getFolders(this.props.term.path, this.props.fileSys),
+                getFiles(this.props.term.path, this.props.fileSys)
+            );
+            const newValue = autoComplete(oldValue, existingArgs);
             e.preventDefault();
             if(length(newValue) > 0)
                 this.setState({ lineValue: newValue });
