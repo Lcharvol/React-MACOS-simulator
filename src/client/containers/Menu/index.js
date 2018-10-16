@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withStateHandlers(
-        ({ initialDisplayMenu = true }) => ({
+        ({ initialDisplayMenu = false }) => ({
             displayMenu: initialDisplayMenu,
         }),
         {

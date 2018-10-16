@@ -13,6 +13,7 @@ import {
 import { getCommand } from '../../inputParcer';
 import { Arrow, Location } from './Line/styles';
 import WindowResizer from '../WindowResizer';
+import autoComplete from '../../shortcuts/autoComplete';
 import Header from './Header';
 import Line from './Line';
 
@@ -48,8 +49,11 @@ class Terminal extends React.Component {
             e.preventDefault();
             this.setState({ lineValue: newValue, historyCommandPos: newHistoryCommandPos });
         } else if (e.keyCode == 9) {
+            const oldValue = this.state.lineValue;
+            const newValue = autoComplete(oldValue)
             e.preventDefault();
-            alert("Execute ajax call after tab pressed");
+            if(length(newValue) > 0)
+                this.setState({ lineValue: newValue });
         }
         else if (this.state.historyCommandPos !== 0) {
             this.setState({ historyCommandPos: 0 });
