@@ -11,7 +11,8 @@
     "cli": "webpack --watch --display none",
     "cli-dev": "NODE_ENV=production webpack --progress --colors",
     "srv-dev": "DEBUG=tetris:* babel-watch -w src src/server/index.js",
-    "srv-prod": "DEBUG=tetris:* babel src --out-dir dist"
+    "srv-prod": "DEBUG=tetris:* babel src --out-dir dist",
+    "pret": "pretty-quick"
   },
   "contributors": [
     {
@@ -20,6 +21,11 @@
       "url": "https://github.com/Lcharvol"
     }
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.0.0-beta.34",
@@ -81,7 +87,10 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "jest": "^23.4.2",
-    "uglify-js-brunch": "^2.10.0"
+    "husky": "next",
+    "uglify-js-brunch": "^2.10.0",
+    "prettier": "^1.14.3",
+    "pretty-quick": "^1.7.0"
   },
   "eslint": {
     "root": true
