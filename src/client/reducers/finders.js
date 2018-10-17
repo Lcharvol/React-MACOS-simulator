@@ -13,7 +13,7 @@ import uuidv4 from "uuid/v4";
 import { ADD_NEW_FINDER, DELETE_FINDER } from "../actions/finders";
 import { initialFinder } from "../constants/finder";
 
-const initialState = [initialFinder];
+const initialState = [];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
