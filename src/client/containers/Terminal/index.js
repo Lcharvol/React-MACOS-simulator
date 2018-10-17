@@ -15,7 +15,7 @@ import { Arrow, Location } from './Line/styles';
 import WindowResizer from '../WindowResizer';
 import autoComplete from '../../shortcuts/autoComplete';
 import { getFolders, getFiles } from '../../commands/ls';
-import Header from './Header';
+import WindowHeader from '../../components/WindowHeader';
 import Line from './Line';
 
 const propTypes = {
@@ -101,18 +101,14 @@ class Terminal extends React.Component {
                     commands,
                 }
             },
-            fileSys,
             addNewLine,
-            topTermPosition,
-            changeTopTermPosition,
+            topWindowPosition,
+            changeTopWindowPosition,
             deleteTerm,
         } = this.props;
         const {
             lineValue,
-            deltaPosition,
-            controlledPosition,
             position,
-            historyCommandPos
         } = this.state;
         
         return (
@@ -120,16 +116,16 @@ class Terminal extends React.Component {
                 <Container
                     onClick={(e) => {
                             this.focusTextInput(e);
-                            this.setState({ position: topTermPosition + 1 });
-                            changeTopTermPosition(topTermPosition + 1);
+                            this.setState({ position: topWindowPosition + 1 });
+                            changeTopWindowPosition(topWindowPosition + 1);
                         }
                     }
                     position={position}
                 >
                     <WindowResizer>
-                    <Header
-                        termId={id}
-                        deleteTerm={deleteTerm}
+                    <WindowHeader
+                        windowId={id}
+                        deleteWindow={deleteTerm}
                     />
                     <LinesContainer>
                         {map(line =>

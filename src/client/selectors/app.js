@@ -3,7 +3,7 @@ import {
     propEq
 } from 'ramda';
 
-export const getTopTermPosition = state => state.app.topTermPosition;
+export const getTopWindowPosition = state => state.app.topWindowPosition;
 
 export const getShortcuts = state => state.app.menu.shortcuts;
 

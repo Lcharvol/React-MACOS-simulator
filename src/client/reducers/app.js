@@ -6,7 +6,7 @@ import {
 import { findIndex, propEq, length } from 'ramda';
 
 const initialState = {
-  topTermPosition: 0,
+  topWindowPosition: 0,
   menu: {
     shortcuts: ['termux', 'document'],
   },
@@ -14,12 +14,12 @@ const initialState = {
     {
       id: 0,
       active: true,
-      topTermPosition: 0
+      topWindowPosition: 0
     },
     {
       id: 1,
       active: false,
-      topTermPosition: 0
+      topWindowPosition: 0
     }
   ],
   file_sys: []
@@ -28,7 +28,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_TOP_TERM: {
-      return {...state, topTermPosition: action.position};
+      return {...state, topWindowPosition: action.position};
     }
     case DESKTOP_GO_RIGHT: {
       const activeId = findIndex(propEq('active', true))(state.desktops);

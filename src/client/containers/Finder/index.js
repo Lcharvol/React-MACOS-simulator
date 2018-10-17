@@ -1,13 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Draggable from 'react-draggable';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
+import WindowHeader from '../../components/WindowHeader';
+import WindowResizer from '../WindowResizer';
 
-const Finder = ({
+class Finder extends React.Component {
+    constructor(props) {
+        super(props);
 
-}) => (
-    <Container>
+        this.state = {
+            position: 0
+        };
+    }
+    render () {
+        const {
+            id,
+            deleteFinder,
+            topWindowPosition,
+            changeTopWindowPosition
+        } = this.props;
 
-    </Container>
-);
+        const {
+            position
+        } = this.state;
+        return (
+            <Draggable bounds="body">
+                <Container
+                    onClick={(e) => {
+                        this.setState({ position: topWindowPosition + 1 });
+                        changeTopWindowPosition(topWindowPosition + 1);
+                    }
+                    }
+                    position={position}
+                >
+                    <WindowResizer>
+                        <WindowHeader
+                            termId={id}
+                            deleteWindow={deleteFinder}
+                        />
+                        <Content>
+
+                        </Content>
+                    </WindowResizer>
+                </Container>
+            </Draggable>
+        )
+    }
+};
 
 export default Finder;

@@ -11,23 +11,25 @@ import {
 } from './styles';
 import { addNewLine, deleteTerm } from '../../actions/terms';
 import {
-    changeTopTermPosition,
+    changeTopWindowPosition,
     desktopGoLeft,
     desktopGoRight
 } from '../../actions/app';
 import Terminal from '../../containers/Terminal';
+import Finder from '../../containers/Finder';
 import Menu from '../../containers/Menu';
 import Header from '../../containers/Header';
 import Desktop from '../../containers/Desktop';
 import { getTerms } from '../../selectors/term';
-import { getTopTermPosition, getDesktops, getActiveDesktopPos } from '../../selectors/app';
+import { getTopWindowPosition, getDesktops, getActiveDesktopPos } from '../../selectors/app';
 import { getFileSys, getDesktopFileSys } from '../../selectors/fileSys';
+import { getFinders } from '../../selectors/finders';
 
 const propTypes = {
     terms: array.isRequired,
     addNewLine: func.isRequired,
-    topTermPosition: number,
-    changeTopTermPosition: func.isRequired,
+    topWindowPosition: number,
+    changeTopWindowPosition: func.isRequired,
     deleteTerm: func.isRequired,
 }
 
@@ -61,9 +63,10 @@ class App extends React.Component {
     render() {
     const {
         terms,
+        finders,
         addNewLine,
-        changeTopTermPosition,
-        topTermPosition,
+        changeTopWindowPosition,
+        topWindowPosition,
         deleteTerm,
         fileSys,
         desktopFileSys,
@@ -80,14 +83,22 @@ class App extends React.Component {
                             {map(term =>
                                 <Terminal
                                     key={term.id}
-                                    topTermPosition={topTermPosition}
                                     term={term}
                                     fileSys={fileSys}
                                     addNewLine={addNewLine}
-                                    changeTopTermPosition={changeTopTermPosition}
+                                    changeTopWindowPosition={changeTopWindowPosition}
+                                    topWindowPosition={topWindowPosition}
                                     deleteTerm={deleteTerm}
                                 />
                             ,terms)}
+                            {map(finder =>
+                                <Finder
+                                    key={finder.id}
+                                    id={finder.id}
+                                    changeTopWindowPosition={changeTopWindowPosition}
+                                    topWindowPosition={topWindowPosition}
+                                />
+                            , finders)}
                         <Menu />
                     </DesktopElem>
                 ),desktops)}
@@ -103,7 +114,8 @@ App.propTypes = propTypes;
 const mapStateToProps = state => ({
     fileSys: getFileSys(state),
     terms: getTerms(state),
-    topTermPosition: getTopTermPosition(state),
+    finders: getFinders(state),
+    topWindowPosition: getTopWindowPosition(state),
     desktopFileSys: getDesktopFileSys(state),
     desktops: getDesktops(state),
     activeDesktopPos: getActiveDesktopPos(state)
@@ -111,7 +123,7 @@ const mapStateToProps = state => ({
   
 const actions = {
     addNewLine,
-    changeTopTermPosition,
+    changeTopWindowPosition,
     deleteTerm,
     desktopGoLeft,
     desktopGoRight

@@ -19,7 +19,6 @@ const checkFlags = (flags, supportedFlags) => {
         if(!contains(flag, supportedFlags))
             isFlagsSupported = false
     },flags);
-    console.log('isFlagsSupported: ', isFlagsSupported)
     return isFlagsSupported ? 0 : -1;
 }
 

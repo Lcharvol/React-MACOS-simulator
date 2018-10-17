@@ -1,15 +1,10 @@
 import {
     propEq,
     findIndex,
-    map,
     drop,
     length,
     dropLast,
-    takeLast,
     isNil,
-    isEmpty,
-    assocPath,
-    without,
     path as ramdaPath,
     remove
 } from 'ramda';
@@ -21,10 +16,7 @@ import {
     CHANGE_LOCATION,
     CLEAR_TERM,
     DELETE_TERM,
-    ADD_REPOSITORY,
-    ADD_FILE,
     ADD_TO_COMMAND_HISTORY,
-    REMOVE_FILE
 } from '../actions/terms';
 import { initialTerm, initialLine } from '../constants/term';
 

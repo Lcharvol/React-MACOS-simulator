@@ -4,19 +4,19 @@ import {
     RED_BUTTON,
     YELLOW_BUTTON,
     GREEN_BUTTON
-} from '../../../constants/colors';
+} from '../../constants/colors';
 import { Container } from './styles';
 import Button from './Button';
 
 const Header = ({
-    termId,
-    deleteTerm,
+    windowId,
+    deleteWindow,
 }) => (
     <Container>
         <Button
             color={RED_BUTTON}
-            action={deleteTerm}
-            termId={termId}
+            action={deleteWindow}
+            windowId={windowId}
         />
         <Button color={YELLOW_BUTTON}/>
         <Button color={GREEN_BUTTON}/>

@@ -8,7 +8,7 @@ import {
     MinusButtonIcon,
     ExpendButtonIcon
 } from './styles';
-import { RED_BUTTON, YELLOW_BUTTON, GREEN_BUTTON } from '../../../constants/colors';
+import { RED_BUTTON, YELLOW_BUTTON, GREEN_BUTTON } from '../../constants/colors';
 
 const propTypes = {
     color: string.isRequired,
@@ -26,11 +26,11 @@ const getButtonIcon = color => {
 const Button = ({
     color,
     action,
-    termId,
+    windowId,
 }) => (
     <ButtonContainer
         color={color}
-        onClick={() => action(termId)}
+        onClick={() => action(windowId)}
     >
         <IconContainer>
             {getButtonIcon(color)}
