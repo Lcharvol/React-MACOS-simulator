@@ -27,7 +27,6 @@ class Desktop extends React.Component {
     const { selectedItems } = this.state;
     return (
       <Container onClick={() => this.selectItem("")}>
-        {console.log("desktopFileSys: ", desktopFileSys)}
         {map(file => {
           if (file !== "files")
             return (

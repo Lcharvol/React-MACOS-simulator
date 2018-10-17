@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { getShortcuts } from "../../selectors/app";
-import { supportedShortcuts } from "../../constants/shortcuts";
+import { supportedShortcuts, TERM, FINDER } from "../../constants/shortcuts";
 import Icon from "../../components/Icon";
 import { addNewTerm } from "../../actions/terms";
 import { addNewFinder } from "../../actions/finders";
@@ -19,7 +19,19 @@ const getIcon = shortcut => {
   return ret;
 };
 
-const Menu = ({ displayMenu, handleDisplayMenu, shortcuts, addNewTerm }) => (
+const getIconAction = (shortcut, actions) => {
+  if (shortcut === TERM) return actions[0];
+  else if (shortcut === FINDER) return actions[1];
+  return () => {};
+};
+
+const Menu = ({
+  displayMenu,
+  handleDisplayMenu,
+  shortcuts,
+  addNewTerm,
+  addNewFinder
+}) => (
   <Container onMouseEnter={handleDisplayMenu} onMouseLeave={handleDisplayMenu}>
     <Bar displayMenu={displayMenu}>
       {map(
@@ -27,7 +39,7 @@ const Menu = ({ displayMenu, handleDisplayMenu, shortcuts, addNewTerm }) => (
           <Icon
             key={shortcut}
             shortcut={getIcon(shortcut)}
-            addNewTerm={addNewTerm}
+            action={getIconAction(shortcut, [addNewTerm, addNewFinder])}
           />
         ),
         shortcuts
