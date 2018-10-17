@@ -13,6 +13,9 @@ export const Container = styled.div`
     -webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1);
     -o-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1);
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1);
+    max-height: 100vh;
+    max-width: 100vw;
+    
 `;
 
 export const LinesContainer = styled.div`
@@ -23,7 +26,7 @@ export const LinesContainer = styled.div`
     flex-direction:column;
     width:100%;
     margin-top:10px;
-    max-height:100%;
+    max-height:calc(100% - 75px);
     overflow:hidden;
 `;
 

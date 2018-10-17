@@ -1,24 +1,17 @@
 import { initialFileSys } from "../constants/fileSys";
 import {
-  propEq,
-  findIndex,
-  map,
   drop,
-  length,
-  dropLast,
-  takeLast,
-  isNil,
-  isEmpty,
+  dissocPath,
   assocPath,
   without,
   path as ramdaPath,
-  remove
 } from 'ramda';
 
 import {
   ADD_REPOSITORY,
   ADD_FILE,
-  REMOVE_FILE
+  REMOVE_FILE,
+  REMOVE_FOLDER
 } from '../actions/fileSys';
 
 const reducer = (state = initialFileSys, action) => {
@@ -56,6 +49,14 @@ const reducer = (state = initialFileSys, action) => {
       );
       return {...state};
   };
+  case REMOVE_FOLDER: {
+        const { path, name } = action;
+        state = dissocPath(
+            [...drop(1, path), name],
+            state
+        );
+        return {...state};
+    }
     default:
       return state;
   }

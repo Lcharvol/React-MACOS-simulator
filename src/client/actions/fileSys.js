@@ -4,8 +4,12 @@ export const ADD_FILE = "file_sys:touch";
 
 export const REMOVE_FILE = "file_sys:rm";
 
+export const REMOVE_FOLDER = "file_sys:rm -rf";
+
 export const addRepository = (path, name) => ({ type: ADD_REPOSITORY, path, name });
 
 export const addFile = (path, name) => ({ type: ADD_FILE, path, name });
 
 export const removeFile = (path, name) => ({ type: REMOVE_FILE, path, name });
+
+export const removeFolder = (path, name) => ({ type: REMOVE_FOLDER, path, name });
