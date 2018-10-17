@@ -33,7 +33,7 @@ class Finder extends React.Component {
           position={position}
         >
           <WindowResizer>
-            <WindowHeader termId={id} deleteWindow={deleteFinder} />
+            <WindowHeader windowId={id} deleteWindow={deleteFinder} />
             <Content>
               <SideMenu />
             </Content>
