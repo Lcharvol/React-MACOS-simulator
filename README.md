@@ -20,16 +20,19 @@ Supported UNIX command:
 ```console
 ls (DONE)
 cd (DONE)
+exit (DONE)
 clear (DONE)
 mkdir (DONE)
 touch (DONE)
-rm (WIP)
+rm (DONE) [-rf]
 ```
 
 Supported shortcuts:
 
 ```console
- tab (INC)
+ tab autocomplete (DONE)
+ Ctrl + C (DONE)
+ Ctrl + D (DONE)
 ```
 
 Supported features:
@@ -37,13 +40,16 @@ Supported features:
 ```console
  - term
  - menu
- - Finder (INC)
+ - Finder (WIP)
  - Folder/File drag and drop (WIP)
- - Windows resize (WIP)
+ - Windows resize (DONE)
+ - Multi Desktop (WIP)
  
 ```
 
  Then go to: http://localhost:8080/
+ 
+ ! You need Node > 9.0
   
 # Preview
 
